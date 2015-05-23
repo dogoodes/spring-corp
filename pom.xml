@@ -4,9 +4,15 @@
 	<groupId>springcorp.org</groupId>
 	<artifactId>spring-corp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 	<name>spring-corp</name>
 	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.test.failure.ignore>true</maven.test.failure.ignore>
+		<spring.main.version>2.5.6</spring.main.version>
+		<spring.security.version>3.0.0.M1</spring.security.version>
+	</properties>
 	<build>
 		<plugins>
 			<plugin>
@@ -168,6 +174,34 @@
 			<version>1.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jms</artifactId>
+					<groupId>javax.jms</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jmxtools</artifactId>
+					<groupId>com.sun.jdmk</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jmxri</artifactId>
+					<groupId>com.sun.jmx</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>activation</artifactId>
+					<groupId>javax.activation</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>mail</artifactId>
+					<groupId>javax.mail</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 		<!-- concrete Log4J Implementation for SLF4J API -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -246,13 +280,13 @@
 			<artifactId>c3p0</artifactId>
 			<version>0.9.1.2</version>
 		</dependency>
-		
+
 		<!-- soap -->
 		<dependency>
-	    	<groupId>org.apache.soap</groupId>
-	    	<artifactId>soap</artifactId>
-	    	<version>2.3</version>
-	    </dependency>
+			<groupId>org.apache.soap</groupId>
+			<artifactId>soap</artifactId>
+			<version>2.3</version>
+		</dependency>
 
 		<!-- Servlets -->
 		<dependency>

@@ -41,78 +41,78 @@ public class GerenciadorMensagem {
 		}
 	}
 	
-	public static String getMessageIntegrityConstraint(Throwable e){
+	public static String getMessageIntegrityConstraint(Throwable e) {
 		String messageToShow = null;
-		if (e instanceof ConstraintViolationException){
+		if (e instanceof ConstraintViolationException) {
 			Throwable rootCause = null;
 			Throwable cause = e.getCause();
 			while (cause != null && cause != rootCause) {
 				rootCause = cause;
 				cause = cause.getCause();
 			}
-			if (rootCause != null){
+			if (rootCause != null) {
 				String message = rootCause.getMessage();
 				int fkMessagePosition = message.indexOf("FK_");
-				if (fkMessagePosition != -1){
+				if (fkMessagePosition != -1) {
 					int fkMessagePositionFim = message.indexOf(" ", fkMessagePosition);
 					String fkMessageName = StringUtils.normalize(message.substring(fkMessagePosition, fkMessagePositionFim));	
 					messageToShow = getMessage(fkMessageName.toUpperCase());
 				}
 			}
 		}
-		if (messageToShow == null){
+		if (messageToShow == null) {
 			messageToShow = getMessage("foreign.key.not.found");
 		}
 		return messageToShow;
 	}
 	
-	public static String getMessage(String key){
+	public static String getMessage(String key) {
 		String message = null;
 		r.lock();
-		try{
-			for(Iterator<ResourceBundle> it = bundles.iterator(); it.hasNext() && message == null; ){
-				try{
+		try {
+			for (Iterator<ResourceBundle> it = bundles.iterator(); it.hasNext() && message == null;) {
+				try {
 					message = it.next().getString(key);
-				}catch(MissingResourceException e){
+				} catch (MissingResourceException e) {
 					//Ok pode nao estar no bundle da iteracao
 				}
 			}
-		}finally{
+		} finally {
 			r.unlock();
 		}
 		message = message == null?"":message;
 		return message;
 	}
 	
-	public static String getMessage(String key, Object...params){
+	public static String getMessage(String key, Object...params) {
 		String message = null;
 		r.lock();
-		try{
-			for(Iterator<ResourceBundle> it = bundles.iterator(); it.hasNext() && message == null; ){
-				try{
+		try {
+			for (Iterator<ResourceBundle> it = bundles.iterator(); it.hasNext() && message == null;) {
+				try {
 					message = it.next().getString(key);
-				}catch(MissingResourceException e){
+				} catch (MissingResourceException e) {
 					//Ok pode nao estar no bundle da iteracao
 				}
 			}
-			if (!StringUtils.isBlank(message)){
-				try{
+			if (!StringUtils.isBlank(message)) {
+				try {
 					MessageFormat format = new MessageFormat(message);
 					message = format.format(params);
-				}catch(Exception e){
+				} catch (Exception e) {
 					message = "";
 				}
-			}else{
+			} else {
 				message = "";
 			}
-		}finally{
+		} finally {
 			r.unlock();
 		}
 		return message;
 	}
 	
-	public static void main(String argv[]){
-		System.out.println(GerenciadorMensagem.getMessage("cvf.bo.relacao.com.campo.vazia"));
-		System.out.println(GerenciadorMensagem.getMessage("cvf.bo.campo.nao.incluido.cvf", new String[]{"VALPRO"}));
+	public static void main(String argv[]) {
+		System.out.println(GerenciadorMensagem.getMessage("view.logar.nome.nulo"));
+		System.out.println(GerenciadorMensagem.getMessage("ip.machine.user", "123"));
 	}
 }

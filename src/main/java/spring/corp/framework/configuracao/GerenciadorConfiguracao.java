@@ -40,7 +40,7 @@ public class GerenciadorConfiguracao {
 							try {
 								GerenciadorLog.debug(GerenciadorConfiguracao.class, "Carregando a seguinte chave: [" + values[0] +"] e Valor: [" + values[1] + "]");
 							} catch (IndexOutOfBoundsException e) {
-								GerenciadorLog.debug(GerenciadorConfiguracao.class, "Erro ao ler o array. Tamanha:[" + values.length + "] Esperado: 2");
+								GerenciadorLog.debug(GerenciadorConfiguracao.class, "Erro ao ler o array. Tamanho: [" + values.length + "] Esperado: 2");
 								if (values.length == 1) {
 									GerenciadorLog.error(GerenciadorConfiguracao.class, e, "Carregando a seguinte chave: [" + values[0] +"]");
 								}
@@ -58,13 +58,13 @@ public class GerenciadorConfiguracao {
 		}
 	}
 	
-	public static void put(String key, String value){
+	public static void put(String key, String value) {
 		synchronized (p) {
 			p.put(key.trim(), value.trim());
 		}
 	}
 	
-	public static String getConfiguracao(String key){
+	public static String getConfiguracao(String key) {
 		synchronized (p) {
 			return (String) p.get(key);
 		}

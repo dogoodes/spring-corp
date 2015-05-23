@@ -29,7 +29,7 @@ import spring.corp.framework.io.IOUtils;
 import spring.corp.framework.json.JSONFileAttachment;
 import spring.corp.framework.log.GerenciadorLog;
 
-public class GerenciadorEmail implements Runnable{
+public class GerenciadorEmail implements Runnable {
 
 	private final Map<String, String> recipients; //key = email | value = name
 	private final String subject;
