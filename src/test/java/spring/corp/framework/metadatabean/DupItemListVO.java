@@ -14,7 +14,6 @@ public class DupItemListVO implements Serializable {
 	private List<ItemListVO> listItemListVO = new ArrayList<ItemListVO>();
 	
 	public DupItemListVO() {
-		
 		this.umaString = "nada";
 		this.listItemListVO.add(new ItemListVO("Dup Item 1", Integer.valueOf(1)));
 		this.listItemListVO.add(new ItemListVO("Dup Item 2", Integer.valueOf(2)));

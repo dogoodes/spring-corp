@@ -22,7 +22,7 @@ import spring.corp.framework.json.JSONFileAttachment;
 import spring.corp.framework.json.JSONReturn;
 import spring.corp.framework.view.FutureRemoveSession;
 
-public abstract class UploadServlet extends AbstractServlet<JSONReturn>{
+public abstract class UploadServlet extends AbstractServlet<JSONReturn> {
 	
 	private static final long serialVersionUID = 7112658308012232108L;
 
@@ -41,6 +41,7 @@ public abstract class UploadServlet extends AbstractServlet<JSONReturn>{
 		}
 	}
 	
+	@SuppressWarnings("rawtypes")
 	private void uploadFile(HttpServletRequest httpRequest, HttpServletResponse response) {
 		HttpSession session = httpRequest.getSession(true);
 		DiskFileItemFactory factory = new DiskFileItemFactory();

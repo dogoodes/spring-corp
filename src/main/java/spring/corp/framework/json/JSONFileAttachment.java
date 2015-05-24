@@ -10,6 +10,7 @@ public class JSONFileAttachment implements java.io.Serializable {
 	private String fileName;
 	private Long fileSize;
 	public static final String XML_ATTACHMENT = "text/xml;charset=UTF-8";
+	public static final String TXT_ATTACHMENT = "text/plain;charset=UTF-8";
 	public static final String PDF_ATTACHMENT = "application/pdf";
 	public static final String EMAIL_ATTACHMENT = "multipart/mixed";
 	public static final String TEXT_ATTACHMENT = "simple/text;charset=UTF-8";

@@ -55,7 +55,7 @@ public class GerenciadorTradutor {
 		} finally {
 			
 		}
-		message = message == null?"":message;
+		message = message == null ? "" : message;
 		return message;
 	}
 	

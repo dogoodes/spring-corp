@@ -16,7 +16,6 @@ import spring.corp.framework.json.JSONFileAttachment;
 public class GerenciadorUpload {
 
 	//public static final int MAX_FILE_SIZE = 1024 * 2042; //* 20 = 20K //*1024 = 1M //*2024 = 2M
-	
 	private static GerenciadorUpload instance = new GerenciadorUpload();
 	
 	public static GerenciadorUpload getInstance(){
@@ -48,7 +47,7 @@ public class GerenciadorUpload {
 					in.close();
 				}
 			}
-		}catch(IOException e){
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

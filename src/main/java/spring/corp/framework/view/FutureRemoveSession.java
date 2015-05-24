@@ -2,7 +2,7 @@ package spring.corp.framework.view;
 
 import javax.servlet.http.HttpSession;
 
-public class FutureRemoveSession implements Runnable{
+public class FutureRemoveSession implements Runnable {
 
 	private final HttpSession session;
 	private final String chave;

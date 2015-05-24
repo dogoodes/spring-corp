@@ -10,7 +10,14 @@ import spring.corp.framework.metadatabean.DelimiterMetaDataManager;
 
 public class MetaDataBeanTest extends TestCase {
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
+		SimpleMetaDataBean smdbDem = SimpleMetaDataBean.newInstance(new SimpleVO(), '|');
+		DelimiterMetaDataManager managerDem = new DelimiterMetaDataManager(smdbDem, '|');
+		managerDem.materialize("TESTE DO METADATABEAN|178|34|20130508|");
+		System.out.println(smdbDem.getSimpleVO());
+	}
+	
+	public static void main1(String args[]) {
 		DupSimpleVO dupSimpleVO = new DupSimpleVO();
 		dupSimpleVO.setUmaString("nada");
 		
@@ -37,7 +44,6 @@ public class MetaDataBeanTest extends TestCase {
 		listItemListVO.add(new ItemListVO("Item 2", Integer.valueOf(2)));
 		listItemListVO.add(new ItemListVO("Item 3", Integer.valueOf(3)));
 		simpleVO.setItemListVO(listItemListVO);
-		
 		
 		SimpleMetaDataBean smdb = SimpleMetaDataBean.newInstance(simpleVO, '|');
 		DelimiterMetaDataManager manager = new DelimiterMetaDataManager(smdb, '|');

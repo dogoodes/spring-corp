@@ -26,6 +26,7 @@ import spring.corp.framework.configuracao.GerenciadorConfiguracao;
 import spring.corp.framework.exceptions.UserException;
 import spring.corp.framework.i18n.GerenciadorMensagem;
 import spring.corp.framework.io.IOUtils;
+import spring.corp.framework.io.SerializableInputStream;
 import spring.corp.framework.json.JSONFileAttachment;
 import spring.corp.framework.log.GerenciadorLog;
 
@@ -140,7 +141,6 @@ public class GerenciadorEmail implements Runnable {
 	
 	public void enviarEmail() throws MessagingException {
 		boolean debug = false;
-		
 		// Set the host smtp address
 		Properties props = new Properties();
 		props.put("mail.smtp.host", GerenciadorConfiguracao.getConfiguracao("mail.smtp.host"));
@@ -152,10 +152,10 @@ public class GerenciadorEmail implements Runnable {
 		session.setDebug(debug);
 		
 		// set the from and to address
-		MimeBodyPart corpoEmail = new MimeBodyPart();
-		corpoEmail.setContent(message, "text/plain");
+		MimeBodyPart bodyEmail = new MimeBodyPart();
+		bodyEmail.setContent(message, "text/plain");
 		Multipart mp = new MimeMultipart();
-		mp.addBodyPart(corpoEmail);
+		mp.addBodyPart(bodyEmail);
 		
 		if (attach != null) {
 			for (JSONFileAttachment _attach : attach) {
@@ -238,19 +238,29 @@ public class GerenciadorEmail implements Runnable {
 		Transport.send(msg);
 	}
 	
-	private MimeBodyPart getMimeBodyAttachment(JSONFileAttachment attach) throws MessagingException{
+	private MimeBodyPart getMimeBodyAttachment(JSONFileAttachment attach) throws MessagingException {
 		MimeBodyPart attachment = new MimeBodyPart();
-		if ("text/plain".equals(attach.getContentType())) {
-			attachment.setDataHandler(new DataHandler(attach.getFile(), attach.getContentType()));
-			attachment.setFileName(attach.getFileName());
-		} else {
-			DataSource dataSource = new ByteArrayDataSource((byte[]) attach.getFile(), attach.getContentType());
-			attachment.setDataHandler(new DataHandler(dataSource));
-			attachment.setFileName(attach.getFileName());
-			if (attach.getContentType() != null && attach.getContentType().equals(JSONFileAttachment.EMAIL_ATTACHMENT)) {
-				attachment.setHeader("Content-Transfer-Encoding", "base64");
+		
+		DataHandler dataHandler = null;
+		try {
+			SerializableInputStream s = (SerializableInputStream) attach.getFile();
+			DataSource dataSource = new ByteArrayDataSource(s.getByte(), attach.getContentType());
+			dataHandler = new DataHandler(dataSource);
+		} catch (Exception e1) {
+			try {
+				DataSource dataSource = new ByteArrayDataSource(((byte[]) attach.getFile()), attach.getContentType());
+				dataHandler = new DataHandler(dataSource);
+			} catch (Exception e2) {
+				dataHandler = new DataHandler(attach.getFile(), attach.getContentType());
 			}
 		}
+		
+		attachment.setDataHandler(dataHandler);
+		attachment.setFileName(attach.getFileName());
+		if (attach.getContentType() != null && attach.getContentType().equals(JSONFileAttachment.EMAIL_ATTACHMENT)) {
+			attachment.setHeader("Content-Transfer-Encoding", "base64");
+		}
+		
 		return attachment;
 	}
 	

@@ -1,24 +1,37 @@
 # Spring Corp
 =====================
-### Framework Spring para implementaÁıes de projetos corporativos.
+### Framework Spring para implementa√ß√µes de projetos corporativos.
 
-Estrutura criada com Maven 2, onde pode ser acessada pelo pom.xml ou importando o jar dentro da aplicaÁ„o. Por motivos de compatibilidade o framework dever ser usado apenas para implementaÁıes usando JAVA 6 ou JAVA 7.
+Estrutura criada com Maven 2, onde pode ser acessada pelo pom.xml ou importando o jar dentro da aplica√ß√£o. Por motivos de compatibilidade o framework dever ser usado apenas para implementa√ß√µes usando JAVA 6 ou JAVA 7.
 
+- [Audit](#audit)
 - [Configuracao](#configuracao)
 - [Email](#email)
 - [Exceptions](#exceptions)
 - [FTP](#ftp)
+- [Generator](#generator)
 - [Hibernate](#hibernate)
 	 - [DAO](#dao)
+	 - [Finder](#finder)
+- [i18n](#i18n)
+- [io](#io)
 - [Json](#json)
 - [Log](#log)
+- [Metadatabean](#metadatabean)
+	 - [Rules](#rules)
+	 - [Types](#types)
+	 	- [Mainframe](#mainframe)
+- [Security](#security)
 - [Utils](#utils)
 - [View](#view)
      - [Servlets](#servlets)
+- [WS](#ws)
+- [Zip](#zip)
 
+## Audit
 
 ## Configuracao
-Classe para gerenciar arquivo properties (configuracao.properties) de configuraÁ„o do framework.
+Classe para gerenciar arquivo properties (configuracao.properties) de configura√ß√£o do framework.
 
 ## Email
 Classes para gerenciamento de emails do sitema. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/email "veja mais").
@@ -27,23 +40,40 @@ Classes para gerenciamento de emails do sitema. [veja mais](https://github.com/a
 
 ## FTP
 
+## Generator
+Conjunto de classes com m√©todos que executam fun√ß√µes comuns, muitas vezes re-utilizados que geram dados cadastrais espec√≠ficos. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/generator/ "veja mais").
 
 ## Hibernate
-O Hibernate È um framework para o mapeamento objeto-relacional escrito na linguagem Java, mas tambÈm È disponÌvel em .Net como o nome NHibernate. Este framework facilita o mapeamento dos atributos entre uma base tradicional de dados relacionais e o modelo objeto de uma aplicaÁ„o, mediante o uso de arquivos (XML) ou anotaÁıes Java. Hibernate È um software livre de cÛdigo aberto distribuÌdo com a licenÁa LGPL. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/hibernate/ "veja mais").
+O Hibernate √© um framework para o mapeamento objeto-relacional escrito na linguagem Java, mas tamb√©m √© dispon√≠vel em .Net como o nome NHibernate. Este framework facilita o mapeamento dos atributos entre uma base tradicional de dados relacionais e o modelo objeto de uma aplica√ß√£o, mediante o uso de arquivos (XML) ou anota√ß√µes Java. Hibernate √© um software livre de c√≥digo aberto distribu√≠do com a licen√ßa LGPL. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/hibernate/ "veja mais").
 
 ### DAO
-Objeto de acesso a dados (ou simplesmente DAO, acrÙnimo de Data Access Object), È um padr„o para persistÍncia de dados que permite separar regras de negÛcio das regras de acesso a banco de dados. Numa aplicaÁ„o que utilize a arquitetura MVC, todas as funcionalidades de bancos de dados, tais como obter as conexıes, mapear objetos Java para tipos de dados SQL ou executar comandos SQL, devem ser feitas por classes DAO. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/hibernate/dao "veja mais").
+Objeto de acesso a dados (ou simplesmente DAO, acr√≥nimo de Data Access Object), √© um padr√£o para persist√™ncia de dados que permite separar regras de neg√≥cio das regras de acesso a banco de dados. Numa aplica√ß√£o que utilize a arquitetura MVC, todas as funcionalidades de bancos de dados, tais como obter as conex√µes, mapear objetos Java para tipos de dados SQL ou executar comandos SQL, devem ser feitas por classes DAO. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/hibernate/dao "veja mais").
+
+### Finder
+
+## i18n
+Internacionaliza√ß√£o e localiza√ß√£o, em inform√°tica, s√£o processos de desenvolvimento e/ou adapta√ß√£o de um produto, em geral softwares de computadores, para uma l√≠ngua e cultura de um pa√≠s. No Spring Corp Framework h√° tradu√ß√£o do sistema √© feita em arquivos .properties que variam de acordo com localiza√ß√£o do request do usu√°rio. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/i18n/ "veja mais").
+
+## io
 
 ## Json
 
 ## Log
-ImplmentaÁ„o para gerenciar mensagens de log no sistema de acordo com o tipo e prioridade da mensagem. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/log "veja mais").
+Implmenta√ß√£o para gerenciar mensagens de log no sistema de acordo com o tipo e prioridade da mensagem. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/log/ "veja mais").
+
+## Metadatabean
+
+### Rules
+
+### Types
+
+#### Mainframe
 
 ## Utils
-Classes com conjunto de mÈtodos que executam funÁıes comuns, muitas vezes re-utilizados. A maioria das classes de utilit·rios definem esses mÈtodos comuns sob escopo est·tico. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/utils "veja mais").
+Classes com conjunto de m√©todos que executam fun√ß√µes comuns, muitas vezes re-utilizados. A maioria das classes de utilit√°rios definem esses m√©todos comuns sob escopo est√°tico. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/utils/ "veja mais").
 
 ## View
-Classes com conjunto de mÈtodos que executam funÁıes comuns na camada controle do sistema, implementaÁıes de seguranÁa, validaÁıes de negocio, regex, cache ou tratamento de requests. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/view "veja mais").
+Classes com conjunto de m√©todos que executam fun√ß√µes comuns na camada controle do sistema, implementa√ß√µes de seguran√ßa, valida√ß√µes de neg√≥cio, regex, cache ou tratamento de requests. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/view "veja mais").
 
 ### Servlets
 Servlets implementadas para distribuir o acesso na camada controle, onde temos apenas uma servlet para acessar classes java de acordo com o request da view. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/view/servlets "veja mais").

@@ -32,7 +32,7 @@ public abstract class AbstractMetaDataManager implements IMetaDataManager {
 			glueData = values[1];
 			if (!(type instanceof IgnoreType)) {
 				String name = metaDataBean.getName();
-				//System.out.println("MetaDataManager: colocando " + data + " para o campo " + name);
+				System.out.println("MetaDataManager: colocando " + data + " para o campo " + name);
 
 				Object newData = type.transform(data);
 				try {
