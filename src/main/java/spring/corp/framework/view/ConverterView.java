@@ -51,7 +51,6 @@ public final class ConverterView {
 		} finally {
 			r.unlock();
 		}
-		T value = (T) convert.convert(objToConverter);
-		return value;
+		return (T) convert.convert(objToConverter);
 	}
 }

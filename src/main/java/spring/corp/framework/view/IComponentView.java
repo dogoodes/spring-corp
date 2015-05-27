@@ -1,25 +1,21 @@
 package spring.corp.framework.view;
 
-
 public interface IComponentView<T> {
 
 	/**
 	 * Retorna o nome do componente 
-	 * 
 	 * @return
 	 */
 	public String getName();
 
 	/**
 	 * Retorna a Label do componente
-	 * 
 	 * @return
 	 */
 	public String getLabel();
 
 	/**
 	 * Retorna o valor do Componente
-	 * 
 	 * @return
 	 */
 	public T getValue();

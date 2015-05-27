@@ -182,7 +182,6 @@ public class Combo<T> implements IComponentView<T> {
 		return name;
 	}
 
-
 	public String getLabel() {
 		return label;
 	}

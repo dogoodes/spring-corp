@@ -2,11 +2,6 @@ package spring.corp.framework.i18n;
 
 import java.util.Locale;
 
-/**
- * @author Alberto Cerqueira
- * @email alberto.cerqueira1990@gmail.com
- * @date 2015/03/14
- */
 public class LocaleUtils {
 
 	public static final String DEFAULT_LOCALE_NAME = "pt";

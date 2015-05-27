@@ -132,7 +132,7 @@ public class IdentificacaoValidation implements ComplexValidation {
         }
         	
         if (!isOk) {	
-        	String message = GerenciadorMensagem.getMessage("framework.utils.formato.identificacao.invalido", "CPF");
+        	String message = GerenciadorMensagem.getMessage("framework.utils.invalid.identification.format", "CPF");
             throw new UserLinkException(campo, message);
         }
 
@@ -185,7 +185,7 @@ public class IdentificacaoValidation implements ComplexValidation {
             }
         }
         if (!isOk) {
-        	String message = GerenciadorMensagem.getMessage("framework.utils.formato.identificacao.invalido", "CPF");
+        	String message = GerenciadorMensagem.getMessage("framework.utils.invalid.identification.format", "CPF");
             throw new UserLinkException(campo, message);
         }
 	}
@@ -277,7 +277,7 @@ public class IdentificacaoValidation implements ComplexValidation {
 		} 
         
         if (!isOk) {
-        	String message = GerenciadorMensagem.getMessage("framework.utils.formato.identificacao.invalido", "CNPJ");
+        	String message = GerenciadorMensagem.getMessage("framework.utils.invalid.identification.format", "CNPJ");
             throw new UserLinkException(campo, message);
         }
         
@@ -325,7 +325,7 @@ public class IdentificacaoValidation implements ComplexValidation {
             }
         }
         if (!isOk) {
-        	String message = GerenciadorMensagem.getMessage("framework.utils.formato.identificacao.invalido", "CNPJ");
+        	String message = GerenciadorMensagem.getMessage("framework.utils.invalid.identification.format", "CNPJ");
         	throw new UserLinkException(campo, message);
         }
 	}

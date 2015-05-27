@@ -19,7 +19,6 @@ import spring.corp.framework.json.JSONReturn;
  * excecoes sao lancadas como @link{spring.corp.framework.exceptions.UserLinkException}. Uma forma de nao lancar excecao e informando na 
  * hora de recuperar o valor a parametro silent no qual nao lanca a excecao deixando a cargo do usuario recupera-la somente atraves do InputHolder.
  * @see InputHolder
- * 
  * @param <T>
  */
 public class InputArray<T> implements IComponentView<T> {

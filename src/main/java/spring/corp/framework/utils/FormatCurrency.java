@@ -9,22 +9,17 @@ import java.util.Locale;
 
 import spring.corp.framework.exceptions.ConverterException;
 import spring.corp.framework.exceptions.UserException;
+import spring.corp.framework.i18n.GerenciadorMensagem;
 import spring.corp.framework.i18n.LocaleUtils;
 
 public class FormatCurrency {
 
-	private static FormatCurrency instance = new FormatCurrency();
 	private static Locale locale = LocaleUtils.DEFAULT_LOCALE;
 	private static DecimalFormatSymbols dfs = new DecimalFormatSymbols(locale);
 	public static final String GROUPING_PATTERN = "#,###,###,###,##0.00##";
 	public static final String NO_GROUPING_PATTERN = "0.00";
-	public static final String ZERO = FormatCurrency.getInstance().formatCurrency(0);
+	public static final String ZERO = formatCurrency(0);
 
-	private FormatCurrency() {}
-	public static FormatCurrency getInstance() {
-		return instance;
-	}
-	
 	/**
 	 * Instance decimal format using:
 	 * <p>
@@ -33,7 +28,7 @@ public class FormatCurrency {
 	 * Formats is not thread-safe, so we must create one for each invocation.
 	 * Later on, we can do some object pooling.
 	 */
-	public DecimalFormat getFormat(String pattern) {
+	public static DecimalFormat getFormat(String pattern) {
 		DecimalFormat df = new DecimalFormat(pattern, dfs);
 		df.setParseBigDecimal(true);
 		df.setCurrency(Currency.getInstance(LocaleUtils.DEFAULT_CURRENCY));
@@ -45,7 +40,7 @@ public class FormatCurrency {
 	 * @return a decimal format for the pattern
 	 * <i>###,###,###,###,###,##0.00</i>
 	 */
-	public DecimalFormat getFormat() {
+	public static DecimalFormat getFormat() {
 		return getFormat(GROUPING_PATTERN);
 	}
 
@@ -53,7 +48,7 @@ public class FormatCurrency {
 	 * Fomat a BigDecimal value. Example: 100.992,52
 	 * @param value
 	 */
-	public String formatCurrency(Number value) {
+	public static String formatCurrency(Number value) {
 		if (value != null) {
 			return getFormat().format(value);			
 		}
@@ -64,14 +59,14 @@ public class FormatCurrency {
 	 * Fomat a Integer value. Example: 100.992,52
 	 * @param value
 	 */
-	public String formatCurrency(Integer value) {
+	public static String formatCurrency(Integer value) {
 		if (value != null) {			
 			return getFormat().format(value);
 		}
 		return ZERO;
 	}
 
-	public String formatCurrency(double value) {
+	public static String formatCurrency(double value) {
 		return getFormat().format(value);
 	}
 
@@ -79,7 +74,7 @@ public class FormatCurrency {
 	 * Fomat a Long value. Example: 100,00
 	 * @param value
 	 */
-	public String formatCurrency(Long value) {
+	public static String formatCurrency(Long value) {
 		if (value != null) {
 			return getFormat().format(value);			
 		}
@@ -90,7 +85,7 @@ public class FormatCurrency {
 	 * Fomat a long value. Example: 100,00
 	 * @param value
 	 */
-	public String formatCurrency(long value) {
+	public static String formatCurrency(long value) {
 		return getFormat().format(value);
 	}
 
@@ -98,11 +93,11 @@ public class FormatCurrency {
 	 * Fomat a float value. Example: 100,00
 	 * @param value
 	 */
-	public String formatCurrency(float value) {
+	public static String formatCurrency(float value) {
 		return getFormat().format(value);
 	}
 
-	public String formatCurrency(String value) throws UserException {
+	public static String formatCurrency(String value) throws UserException {
 		if (value != null) {
 			try {
 				return getFormat().format(parseCurrency(value));
@@ -121,7 +116,7 @@ public class FormatCurrency {
 	 * @param pattern the pattern to be used.
 	 * @param value the value to format
 	 */
-	public String formatCurrency(String pattern, BigDecimal value) {
+	public static String formatCurrency(String pattern, BigDecimal value) {
 		if (value != null) {			
 			return getFormat(pattern).format(value);
 		}
@@ -133,7 +128,7 @@ public class FormatCurrency {
 	 * Example: 100992,52
 	 * @param value
 	 */
-	public String formatCurrencyNoGrouping(BigDecimal value) {
+	public static String formatCurrencyNoGrouping(BigDecimal value) {
 		if (value != null) {
 			return getFormat(NO_GROUPING_PATTERN).format(value);
 		}
@@ -145,30 +140,30 @@ public class FormatCurrency {
 	 * Don't remove it. Otherwise, the PDF documents will not work as expected.
 	 * @param value
 	 */
-	public String formatBigDecimalString(String value) {
+	public static String formatBigDecimalString(String value) {
 		return getFormat().format(new BigDecimal(value));
 	}
 
-	public String formatCurrencyWithoutSignal(double value) {
+	public static String formatCurrencyWithoutSignal(double value) {
 		return formatCurrency(new BigDecimal(value).abs());
 	}
 
-	public String formatCurrencyWithoutSignal(BigDecimal value) {
+	public static String formatCurrencyWithoutSignal(BigDecimal value) {
 		return formatCurrency(value.abs());
 	}
 
-	public BigDecimal parseCurrency(String value) throws UserException {
+	public static BigDecimal parseCurrency(String value) throws UserException {
 		return parseCurrency(GROUPING_PATTERN, value);
 	}
 
-	public BigDecimal parseCurrencyNoGrouping(String value) throws UserException {
+	public static BigDecimal parseCurrencyNoGrouping(String value) throws UserException {
 		if (value == null || "".equals(value)) {
 			value = "0.00";
 		}
 		return new BigDecimal(value);
 	}
 
-	public BigDecimal parseCurrency(String pattern, String value) throws UserException {
+	public static BigDecimal parseCurrency(String pattern, String value) throws UserException {
 		if (StringUtils.isBlank(value)) {
 			value = "0,00";
 		}
@@ -176,9 +171,8 @@ public class FormatCurrency {
 		DecimalFormat format = getFormat(pattern);
 
 		if (!isValid(format, value)) {
-			//TODO
-			//String message = GerenciadorMensagem.getMessage("framework.utils.invalid.format", value, pattern);
-			//throw new ConverterException(FormatCurrency.class, message);
+			String message = GerenciadorMensagem.getMessage("framework.utils.invalid.format", value, pattern);
+			throw new ConverterException(FormatCurrency.class, message);
 		}
 
 		try {
@@ -200,7 +194,7 @@ public class FormatCurrency {
 	 * @return <code>true</code> se a valido (matches a expressao regular),
 	 * <code>false</code> caso contrario.
 	 */
-	public boolean isValid(String pattern, String value) {
+	public static boolean isValid(String pattern, String value) {
 		return isValid(getFormat(pattern), value);
 	}
 
@@ -212,7 +206,7 @@ public class FormatCurrency {
 	 * @return <code>true</code> se eh valido (matches a expressao regular),
 	 * <code>false</code> caso contrario.
 	 */
-	public boolean isValid(DecimalFormat format, String value) {
+	public static boolean isValid(DecimalFormat format, String value) {
 		String decimalSeparator = String.valueOf(dfs.getDecimalSeparator());
 		String groupingSeparator = String.valueOf(dfs.getGroupingSeparator());
 		int groupingSize = format.getGroupingSize();
