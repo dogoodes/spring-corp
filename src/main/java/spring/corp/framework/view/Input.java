@@ -10,6 +10,7 @@ import javax.servlet.ServletRequest;
 import spring.corp.framework.exceptions.ConverterException;
 import spring.corp.framework.exceptions.UserLinkException;
 import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.utils.StringUtils;
 
 /**
  * Esta implementacao de IComponentView trabalha em conjunto com o InputHolder que eh uma variavel thread-local responsavel por armazenar as excecoes
@@ -217,8 +218,7 @@ public class Input<T> implements IComponentView<T> {
 				if (isNullValue()) { //Se for nulo entao vamos ver se ele eh requerido
 					this.convertedValue = null;
 					if (Boolean.TRUE.equals(required)) {
-						String messageKey = "framework.utils.required";
-						String message = GerenciadorMensagem.getMessage(messageKey, label);
+						String message = GerenciadorMensagem.getMessage("framework.utils.required", label);
 						String link = (focus == null ? name : focus);
 						UserLinkException userLinkException = new UserLinkException(link, message);
 						InputHolder.get().add(userLinkException);
@@ -240,8 +240,7 @@ public class Input<T> implements IComponentView<T> {
 				} else { //Se o campo nao for nulo entao faz sentido validar
 					if (regexValidation != null) {
 						if (regexValidation.evaluate(value)) {
-							String messageKey = "framework.utils.regexValidation." + regexValidation.name();
-							String message = GerenciadorMensagem.getMessage(messageKey);
+							String message = GerenciadorMensagem.getMessage("framework.utils.regexValidation." + regexValidation.name());
 							UserLinkException userLinkException = new UserLinkException(name, message);
 							InputHolder.get().add(userLinkException);
 						}
@@ -302,7 +301,7 @@ public class Input<T> implements IComponentView<T> {
 								theValue = Integer.parseInt(this.value);
 							}
 						} else if (convertedValue instanceof Long) {
-							theValue = (Integer) convertedValue;
+							theValue = Integer.parseInt((convertedValue).toString());
 						} else if (convertedValue instanceof BigDecimal) {
 							theValue = Integer.valueOf((((BigDecimal) convertedValue)).intValue());
 						} else if (convertedValue instanceof BigInteger) {
@@ -356,10 +355,10 @@ public class Input<T> implements IComponentView<T> {
 		}
 		
 		private boolean isNullValue() {
-			return (value == null || "".equals(value));
+			return StringUtils.isBlank(value);
 		}
 	}
-
+	
 	public String getName() {
 		return name;
 	}

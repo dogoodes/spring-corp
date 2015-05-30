@@ -48,6 +48,10 @@ public class DateUtils implements IConverter<Calendar> {
 		return Calendar.getInstance(LocaleUtils.DEFAULT_LOCALE);
 	}
 	
+	public static String today(String pattern){
+		return dateToString(Calendar.getInstance(), pattern);
+	}
+	
 	/**
 	 * Transforma o objeto Date em string seguindo o formato definido no parametro pattern
 	 * @param date Data a ser transformada
@@ -91,9 +95,20 @@ public class DateUtils implements IConverter<Calendar> {
 		return c;
 	}
 	
-	public static String today(String pattern){
-		return dateToString(Calendar.getInstance(), pattern);
-	}
+	/**
+     * Cria um objeto Date a partir de uma String e um padao. Exemplo de pattern: ddMMyyyy.
+     * @param date Data a ser criada.
+     * @param pattern padrao.
+     * @return Data criada
+     * @throws ParseException Caso ocorra algum erro.
+     */
+    public static Date stringToDate(String date, String pattern) throws ParseException {
+        if (date.length() == 7) {
+            date = "0" + date;
+        }
+        SimpleDateFormat format = new SimpleDateFormat(pattern, LocaleUtils.DEFAULT_LOCALE);
+        return format.parse(date);
+    }
 	
 	/**
 	 * Retorna um Integer no formato YYYYMMDD do calendar informado como parametro;
@@ -116,18 +131,13 @@ public class DateUtils implements IConverter<Calendar> {
 		return Integer.valueOf(0);
 	}
 	
-	/**
-     * Cria um objeto Date a partir de uma String e um padao. Exemplo de pattern: ddMMyyyy.
-     * @param date Data a ser criada.
-     * @param pattern padrao.
-     * @return Data criada
-     * @throws ParseException Caso ocorra algum erro.
-     */
-    public static Date stringToDate(String date, String pattern) throws ParseException {
-        if (date.length() == 7) {
-            date = "0" + date;
-        }
-        SimpleDateFormat format = new SimpleDateFormat(pattern, LocaleUtils.DEFAULT_LOCALE);
-        return format.parse(date);
-    }
+	public static Integer stringToInteger(String date, String pattern) throws ParseException {
+		Calendar c = stringToCalendar(date, pattern);
+		return calendarToInteger(c);
+	}
+	
+	public static Integer stringToIntegerHora(String date, String pattern) throws ParseException {
+		Calendar c = stringToCalendar(date, pattern);
+		return calendarToIntegerHora(c);
+	}
 }

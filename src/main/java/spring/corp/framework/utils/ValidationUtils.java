@@ -69,4 +69,11 @@ public class ValidationUtils {
 		}
 		return false;
 	}
+	
+	// TODO: Inserir validador de CEP
+	// TODO: Inserir validador de Placa
+	// TODO: Inserir validador de Email
+	// TODO: Inserir validador de CPF
+	// TODO: Inserir validador de CNPJ
+	// TODO: Inserir validador de Outros
 }

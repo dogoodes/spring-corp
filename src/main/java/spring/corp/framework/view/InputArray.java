@@ -1,16 +1,14 @@
 package spring.corp.framework.view;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.math.BigInteger;
 
 import javax.servlet.ServletRequest;
 
 import spring.corp.framework.exceptions.ConverterException;
-import spring.corp.framework.exceptions.UserException;
 import spring.corp.framework.exceptions.UserLinkException;
 import spring.corp.framework.i18n.GerenciadorMensagem;
-import spring.corp.framework.json.Consequence;
-import spring.corp.framework.json.JSONReturn;
+import spring.corp.framework.utils.StringUtils;
 
 /**
  * Esta implementacao de IComponentView trabalha em conjunto com o InputHolder que eh uma variavel thread-local responsavel por armazenar as excecoes 
@@ -69,6 +67,11 @@ public class InputArray<T> implements IComponentView<T> {
 		private T convertedValue = null;
 		private Class<T> type;
 		private String focus = null;
+		private Integer length = null;
+		private Integer min = null;
+		private Integer max = null;
+		private Integer lessThan = null;
+		private Integer biggerThan = null;
 		private int idx = 0;
 		
 		private ServletRequest request = null;
@@ -155,6 +158,31 @@ public class InputArray<T> implements IComponentView<T> {
 			return this;
 		}
 		
+		public Builder<T> length(Integer length) {
+			this.length = length;
+			return this;
+		}
+		
+		public Builder<T> min(Integer min) {
+			this.min = min;
+			return this;
+		}
+		
+		public Builder<T> max(Integer max) {
+			this.max = max;
+			return this;
+		}
+		
+		public Builder<T> lessThan(Integer lessThan) {
+			this.lessThan = lessThan;
+			return this;
+		}
+		
+		public Builder<T> biggerThan(Integer biggerThan) {
+			this.biggerThan = biggerThan;
+			return this;
+		}
+		
 		public InputArray<T> build() {
 			try {
 				if (recoverValueByRequest()) {
@@ -210,6 +238,80 @@ public class InputArray<T> implements IComponentView<T> {
 							InputHolder.get().add(e);
 						}
 					}
+					if (this.value != null) {
+						int theLength = this.value.length();
+						// work with length
+						if (length != null) {
+							if (theLength != length) {
+								String message = GerenciadorMensagem.getMessage("framework.utils.length", label, length);
+								String link = (focus == null ? name : focus);
+								UserLinkException userLinkException = new UserLinkException(link, message);
+								InputHolder.get().add(userLinkException);
+							}
+						} else if (min != null && max != null) {
+							if (theLength < min || theLength > max) {
+								String message = GerenciadorMensagem.getMessage("framework.utils.min.and.max", label, min, max);
+								String link = (focus == null ? name : focus);
+								UserLinkException userLinkException = new UserLinkException(link, message);
+								InputHolder.get().add(userLinkException);
+							}
+						} else if (min != null) {
+							if (theLength < min) {
+								String message = GerenciadorMensagem.getMessage("framework.utils.min", label, min);
+								String link = (focus == null ? name : focus);
+								UserLinkException userLinkException = new UserLinkException(link, message);
+								InputHolder.get().add(userLinkException);
+							}
+						} else if (max != null) {
+							if (theLength > max) {
+								String message = GerenciadorMensagem.getMessage("framework.utils.max", label, max);
+								String link = (focus == null ? name : focus);
+								UserLinkException userLinkException = new UserLinkException(link, message);
+								InputHolder.get().add(userLinkException);
+							}
+						}
+						
+						Integer theValue = null;
+						if (convertedValue instanceof Integer) {
+							theValue = (Integer) convertedValue;
+						} else if (convertedValue instanceof String) {
+							if (!RegexValidation.OnlyNumbers.evaluate(value)) {
+								theValue = Integer.parseInt(this.value);
+							}
+						} else if (convertedValue instanceof Long) {
+							theValue = Integer.parseInt((convertedValue).toString());
+						} else if (convertedValue instanceof BigDecimal) {
+							theValue = Integer.valueOf((((BigDecimal) convertedValue)).intValue());
+						} else if (convertedValue instanceof BigInteger) {
+							theValue = (Integer) convertedValue;
+						}
+						
+						if (theValue != null) {
+							// work with value
+							if (lessThan != null && biggerThan != null) {
+								if (theValue >= lessThan || theValue <= biggerThan) {
+									String message = GerenciadorMensagem.getMessage("framework.utils.lessThan.and.biggerThan", label, biggerThan, lessThan);
+									String link = (focus == null ? name : focus);
+									UserLinkException userLinkException = new UserLinkException(link, message);
+									InputHolder.get().add(userLinkException);
+								}
+							} else if (lessThan != null) {
+								if (theValue >= lessThan) {
+									String message = GerenciadorMensagem.getMessage("framework.utils.lessThan", label, lessThan);
+									String link = (focus == null ? name : focus);
+									UserLinkException userLinkException = new UserLinkException(link, message);
+									InputHolder.get().add(userLinkException);
+								}
+							} else if (biggerThan != null) {
+								if (theValue <= biggerThan) {
+									String message = GerenciadorMensagem.getMessage("framework.utils.biggerThan", label, biggerThan);
+									String link = (focus == null ? name : focus);
+									UserLinkException userLinkException = new UserLinkException(link, message);
+									InputHolder.get().add(userLinkException);
+								}
+							}
+						}
+					}
 				}
 			} catch (ConverterException e) {
 				String message = null;
@@ -231,7 +333,7 @@ public class InputArray<T> implements IComponentView<T> {
 		}
 		
 		private boolean isNullValue( ){
-			return (value == null || "".equals(value));
+			return StringUtils.isBlank(value);
 		}
 	}
 	
@@ -261,17 +363,4 @@ public class InputArray<T> implements IComponentView<T> {
 	public Boolean isRequired() {
 		return required;
 	}
-
-	public static void main(String argv[]) throws Exception{
-		InputHolder.set(new ArrayList<UserException>());
-		InputArray<BigDecimal> x = InputArray.builderInstance("10.0", BigDecimal.class, 0).name("txtValor").label("Valor de Compra").build();
-		InputArray<BigDecimal> z = InputArray.builderInstance("10.Z", BigDecimal.class, 0).name("txtValorVenda").label("Valor de Venda").build();
-		try{
-			x.getValue();
-			z.getValue();
-		}catch(UserLinkException e){
-			JSONReturn json = JSONReturn.newInstance(Consequence.MUITOS_ERROS, InputHolder.get());
-			System.out.println(json.serialize());
-		}
-	}	
 }
