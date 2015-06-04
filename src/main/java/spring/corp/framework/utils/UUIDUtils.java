@@ -8,7 +8,11 @@ public class UUIDUtils {
         throw new AssertionError();
     }
 	
-	public static String generateUUID(){
+	/**
+	 * Gerador de UUID randômico
+	 * @return (String) string UUID randômica
+	 */
+	public static String generateUUID() {
 		return UUID.randomUUID().getLeastSignificantBits() + "";
 	}
 }

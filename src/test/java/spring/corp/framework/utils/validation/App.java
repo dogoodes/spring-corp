@@ -1,8 +1,10 @@
-package spring.corp.framework.utils;
+package spring.corp.framework.utils.validation;
 
 import spring.corp.framework.generator.Cnpj;
 import spring.corp.framework.generator.Cpf;
 import spring.corp.framework.generator.Renavam;
+import spring.corp.framework.utils.IdentificacaoValidation;
+import spring.corp.framework.utils.ValidationUtils;
 
 public class App {
 
@@ -22,7 +24,15 @@ public class App {
 		System.out.println();
 		
 		System.out.println("Renavam");
-		System.out.println(ValidationUtils.validarRenavam(Renavam.get()));
-		System.out.println(ValidationUtils.validarRenavam("0123456789"));
+		System.out.println(ValidationUtils.renavamValid(Renavam.get()));
+		System.out.println(ValidationUtils.renavamValid("0123456789"));
+		
+		System.out.println();
+		
+		System.out.println("Email");
+		System.out.println(ValidationUtils.emailValid("alberto.cerqueira1990@gmail.com"));
+		System.out.println(ValidationUtils.emailValid("alberto.cerqueira1990gmail.com"));
+		System.out.println(ValidationUtils.emailValid("alberto.cerqueira1990@"));
+		System.out.println(ValidationUtils.emailValid("alberto.cerqueira1990@gmail"));
 	}
 }

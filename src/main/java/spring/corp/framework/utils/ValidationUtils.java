@@ -4,7 +4,12 @@ import spring.corp.framework.view.RegexValidation;
 
 public class ValidationUtils {
 
-	public static boolean validarRenavam(String renavam) {
+	/**
+	 * Validação de código de renavam
+	 * @param renavam (String) código de renavam para validação
+	 * @return (boolean) true para código válido e false para código inválido
+	 */
+	public static boolean renavamValid(String renavam) {
 		// Pegando como exemplo o renavam = 639884962
 
 		// Completa com zeros a esquerda se for no padrao antigo de 9 digitos
@@ -69,10 +74,28 @@ public class ValidationUtils {
 		}
 		return false;
 	}
+
+	/**
+	 * Validação de email
+	 * @param email (String) email para validação
+	 * @return (boolean) true para email válido e false para email inválido
+	 */
+	public static boolean emailValid(String email) {
+		if (StringUtils.isBlank(email)) {
+			return false;
+		}
+		// Valida se esta no formato correto
+		if (!email.matches(RegexValidation.EMAIL.expression())) {
+			return false;
+		}
+		if (email.indexOf(" ") != -1 || email.indexOf("..") != -1) {
+			return false;
+		}
+		return true;
+	}
 	
 	// TODO: Inserir validador de CEP
 	// TODO: Inserir validador de Placa
-	// TODO: Inserir validador de Email
 	// TODO: Inserir validador de CPF
 	// TODO: Inserir validador de CNPJ
 	// TODO: Inserir validador de Outros
