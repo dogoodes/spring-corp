@@ -15,16 +15,16 @@ public class BigDecimalUtils implements IConverter<BigDecimal> {
 	}
 	
 	/**
-	 * Metodo responsavel por converter uma String em BigDecimal.
-	 * @param valor O valor a ser convertido.
-	 * @return O Valor convertido em BigDecimal ou nulo, caso o valor informado seja null.
-	 * @exception ConverterException Caso ocorra alguma excecao na conversao.
+	 * Metodo responsável por converter uma String em BigDecimal.
+	 * @param value (String) O valor a ser convertido.
+	 * @return (BigDecimal) valor convertido em BigDecimal ou nulo, caso o valor informado seja null.
+	 * @exception ConverterException Caso ocorra alguma exceçãoo na conversão.
 	 */
-	public BigDecimal convert(String valor) throws ConverterException {
+	public BigDecimal convert(String value) throws ConverterException {
 		BigDecimal newBig = null;
-		if (valor != null && !valor.equals("")) {
+		if (value != null && !value.equals("")) {
 			try {
-				newBig = FormatCurrency.parseCurrency(valor);
+				newBig = FormatCurrency.parseCurrency(value);
 			} catch (NumberFormatException e) {
 				throw new ConverterException(this.getClass(), e);
 			}
@@ -33,47 +33,22 @@ public class BigDecimalUtils implements IConverter<BigDecimal> {
 	}
 	
 	/**
-	 * Transforma em String o valor BigDecimal levando em consideracao as casas decimais
-	 * Caso o campo opcional seja true e valor informado seja zero, entao NULL sera retornado
-	 * @param valor O Valor a ser convertido
-	 * @param casaDecimal O numero de casas decimais
-	 * @param opcional Indicativo se o campo eh opcional ou nao
-	 * @return
+	 * Transformar em String o valor BigDecimal
+	 * @param value (BigDecimal) valor para conversão
+	 * @param numberDecimalPlaces (int) número de casas decimais que a String deverá conter
+	 * @return (String) valor convertido ou nulo, caso o valor informado seja null.
 	 */
-	public String toString(BigDecimal valor, int casaDecimal, boolean opcional) {
+	public static String toString(BigDecimal value, int numberDecimalPlaces) {
 		String newStr = null;
-		boolean isOpcionalAndValorZerado = (opcional && valor != null && valor.signum() == 0);
-		if (isOpcionalAndValorZerado) {
-			newStr = null;
-		} else {
-			newStr = toString(valor, casaDecimal);
-		}
-		return newStr;
-	}
-	
-	public boolean isBlank(BigDecimal value) {
-		return (value == null || value.signum() == 0);
-	}
-	
-	public boolean isAllBlank(BigDecimal[] value) {
-		boolean and = true;
-		for (BigDecimal b : value) {
-			and = and && isBlank(b);
-		}
-		return and;
-	}
-	
-	public String toString(BigDecimal valor, int casaDecimal) {
-		String newStr = null;
-		if (valor != null) {
+		if (value != null) {
 			try {
-				newStr = String.format("%." + casaDecimal + "f", valor);
+				newStr = String.format("%." + numberDecimalPlaces + "f", value);
 				int posCorte = newStr.lastIndexOf(".");
 				if (posCorte >=0) {
 					String decimal = newStr.substring(posCorte+1);
-					if (decimal.length() > casaDecimal) {
-						decimal = decimal.substring(0,casaDecimal);
-						newStr = newStr.substring(0,posCorte)+"."+decimal;
+					if (decimal.length() > numberDecimalPlaces) {
+						decimal = decimal.substring(0,numberDecimalPlaces);
+						newStr = newStr.substring(0,posCorte) + "." + decimal;
 					}
 				}
 			} catch (IllegalArgumentException e) {
@@ -83,7 +58,54 @@ public class BigDecimalUtils implements IConverter<BigDecimal> {
 		return newStr;
 	}
 	
-	public BigDecimal parseBigDecimal(Number value) {
+	/**
+	 * Transforma em String o valor BigDecimal levando em consideracao as casas decimais<br />
+	 * Caso o campo opcional seja true e valor informado seja zero, entao NULL sera retornado
+	 * @param value (BigDecimal) valor a ser convertido
+	 * @param numberDecimalPlaces (int) número de casas decimais que a String deverá conter
+	 * @param optional (boolean) Indicativo se o campo eh opcional ou nao
+	 * @return (String) valor convertido ou nulo, caso o valor informado seja null. 
+	 */
+	public static String toString(BigDecimal value, int numberDecimalPlaces, boolean optional) {
+		String newStr = null;
+		boolean isOptionalAndValueZeroed = (optional && value != null && value.signum() == 0);
+		if (isOptionalAndValueZeroed) {
+			newStr = null;
+		} else {
+			newStr = toString(value, numberDecimalPlaces);
+		}
+		return newStr;
+	}
+	
+	/**
+	 * Verificar se o BigDecimal esta vazio
+	 * @param value (BigDecimal) valor para verificação
+	 * @return (boolean) true para BigDecimal vazio e false caso contrário
+	 */
+	public static boolean isBlank(BigDecimal value) {
+		return (value == null || value.signum() == 0);
+	}
+	
+	/**
+	 * Verificar se todos os BigDecimal do array estão vazio
+	 * @param values (BigDecimal[]) array de valores para verificação
+	 * @return (boolean) true caso todos estejam vazio false caso algum não esteja
+	 * @see spring.corp.framework.utils.BigDecimalUtils.isBlank(BigDecimal)
+	 */
+	public static boolean isAllBlank(BigDecimal[] values) {
+		boolean and = true;
+		for (BigDecimal value : values) {
+			and = and && isBlank(value);
+		}
+		return and;
+	}
+	
+	/**
+	 * Converte Number em BigDecimal
+	 * @param value (Number) valor para conversão
+	 * @return (BigDecimal) valor convertido
+	 */
+	public static BigDecimal parseBigDecimal(Number value) {
         if (value != null) {
             if (value instanceof BigDecimal) {
                 return (BigDecimal)value;
@@ -96,19 +118,15 @@ public class BigDecimalUtils implements IConverter<BigDecimal> {
         return BigDecimal.ZERO;
     }
     
-    public BigDecimal parseBigDecimal(String value) {
+	/**
+	 * Converte String em BigDecimal
+	 * @param value (String) valor para conversão
+	 * @return (BigDecimal) valor convertido
+	 */
+    public static BigDecimal parseBigDecimal(String value) {
         if (value != null) {
             return new BigDecimal(value);
         }
         return BigDecimal.ZERO;
     }
-	
-    /*
-	public static void main(String argv[]){
-		BigDecimal v = BigDecimalUtils.getInstance().convert("100.000.000.000,02");
-		System.out.println(v);
-		BigDecimal x = BigDecimal.valueOf(100.123);
-		System.out.println(BigDecimalUtils.getInstance().toString(x,2));
-	}
-	*/
 }

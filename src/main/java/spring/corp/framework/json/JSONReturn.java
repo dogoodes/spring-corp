@@ -85,6 +85,7 @@ public class JSONReturn {
 							}
 						}
 					} else if (field.isAnnotationPresent(JoinColumn.class)) {
+						//TODO: Olha com atencao, pois essa nao implementacao gerar muito problemas em diversas partes do sistema...
 						//if (!includes.contains(nomeAtributo)){
 						//	jsonSerializer.exclude("dado."+nomeAtributo);
 						//}
