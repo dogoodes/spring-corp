@@ -4,6 +4,10 @@ import java.util.Random;
 
 public class Renavam {
 
+	/**
+	 * Gerador de códigos de renavam aleatórios
+	 * @return (String) código de renavam aleatório
+	 */
 	public static String get() {
 		Random randomizador = new Random();
 		String renavamGeradoAleatoriamente = "";

@@ -47,7 +47,13 @@ public class IntegerUtils implements IConverter<Integer> {
 	
 	/**
 	 * Verificar se a String esta vazia.
-	 * Exemplo: " " == false, ""  == true, "0" == true e "1" == false
+	 * <p>Exemplos: 
+	 * <ul>
+	 * 	 <li>" " == false</li>
+	 * 	 <li>"" == true</li>
+	 *   <li>"0" == true</li>
+	 *   <li>"1" == false</li>
+	 * </ul></p>
 	 * @param value (String) valor para 
 	 * @return (boolean) true para String vazia e false caso contrário
 	 * @see spring.corp.framework.utils.StringUtils.isBlank(String)

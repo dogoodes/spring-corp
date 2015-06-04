@@ -14,7 +14,7 @@ import spring.corp.framework.utils.DateUtils;
 import spring.corp.framework.utils.IConverter;
 import spring.corp.framework.utils.IntegerUtils;
 import spring.corp.framework.utils.LongUtils;
-import spring.corp.framework.utils.StringConverter;
+import spring.corp.framework.utils.StringUtils;
 
 public final class ConverterView {
 	
@@ -27,7 +27,7 @@ public final class ConverterView {
 		converters.put(Integer.class, IntegerUtils.getInstance());
 		converters.put(Long.class, LongUtils.getInstance());
 		converters.put(Calendar.class, DateUtils.getInstance());
-		converters.put(String.class, StringConverter.getInstance());
+		converters.put(String.class, StringUtils.getInstance());
 		converters.put(Boolean.class, BooleanConverter.getInstance());
 	}
 	

@@ -18,7 +18,12 @@ public class Cpf {
 		return (int) Math.round(dividendo - (Math.floor(dividendo / divisor) * divisor));
 	}
 	
-	public String get(boolean comPontos) {
+	/**
+	 * Gerar CPF randômico
+	 * @param withPoints (boolean) true para retornar valor com pontuação e false para que não contenha pontuação
+	 * @return (String) CPF randômico
+	 */
+	public String get(boolean withPoints) {
 		int n = 9;
 		int n1 = randomiza(n);
 		int n2 = randomiza(n);
@@ -41,19 +46,18 @@ public class Cpf {
 
 		d2 = 11 - (mod(d2, 11));
 
-		String retorno = null;
-
 		if (d2 >= 10) {
 			d2 = 0;
 		}
-		retorno = "";
+		
+		String ret = null;
 
-		if (comPontos) {
-			retorno = "" + n1 + n2 + n3 + '.' + n4 + n5 + n6 + '.' + n7 + n8 + n9 + '-' + d1 + d2;
+		if (withPoints) {
+			ret = "" + n1 + n2 + n3 + '.' + n4 + n5 + n6 + '.' + n7 + n8 + n9 + '-' + d1 + d2;
 		} else {
-			retorno = "" + n1 + n2 + n3 + n4 + n5 + n6 + n7 + n8 + n9 + d1 + d2;
+			ret = "" + n1 + n2 + n3 + n4 + n5 + n6 + n7 + n8 + n9 + d1 + d2;
 		}
 
-		return retorno;
+		return ret;
 	}
 }

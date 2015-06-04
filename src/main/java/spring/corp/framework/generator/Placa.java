@@ -4,6 +4,10 @@ import java.util.Random;
 
 public class Placa {
 
+	/**
+	 * Gerador de placas aleatórias
+	 * @return (String) placa aleatória
+	 */
 	public static String get() {
 		StringBuilder sb = new StringBuilder(Word.getOnlyLetters(3) + "-");
 		Random r = new Random();

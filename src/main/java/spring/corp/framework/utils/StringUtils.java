@@ -3,16 +3,24 @@ package spring.corp.framework.utils;
 import java.util.HashMap;
 import java.util.Map;
 
+import spring.corp.framework.exceptions.ConverterException;
 import spring.corp.framework.view.RegexValidation;
 
 import com.ibm.icu.text.Normalizer;
 
-public class StringUtils {
+public class StringUtils implements IConverter<String> {
 
 	private static final int PAD_LIMIT = 8192;
 	
-	private StringUtils() {
-		throw new AssertionError();
+	private static StringUtils instance = new StringUtils();
+
+	public static StringUtils getInstance() {
+		return instance;
+	}
+	
+	@Override
+	public String convert(String valor) throws ConverterException {
+		return valor;
 	}
 
     public static boolean isEmpty(String str) {

@@ -26,6 +26,8 @@ public class App {
 		System.out.println(Password.get(10, 3));
 		System.out.println(Password.get(10, 4));
 		System.out.println(Password.get(10, 5));
+		System.out.println(Password.get(10, 6));
+		System.out.println(Password.get(10, 7));
 		
 		System.out.println();
 		

@@ -4,6 +4,11 @@ import java.util.Random;
 
 public class Word {
 
+	/**
+	 * Gerador de palavras aleatórias
+	 * @param maxChar (int) quantidade de caracteres na palavra
+	 * @return (String) palavra aleatória
+	 */
 	public static String get(int maxChar) {
     	Random rand = new Random();
     	char[] letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÃÕÂÊÎÔÛÀÈÌÒÙÇ".toCharArray();
@@ -15,6 +20,11 @@ public class Word {
         return sb.toString();      
     }
 	
+	/**
+	 * Gerador de palavras aleatórias contendo apenas letras
+	 * @param maxChar (int) quantidade de caracteres na palavra
+	 * @return (String) palavra aleatória
+	 */
 	public static String getOnlyLetters(int maxChar) {
     	Random rand = new Random();
     	char[] letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
