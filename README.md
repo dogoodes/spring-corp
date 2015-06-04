@@ -1,8 +1,7 @@
 ### Spring Corp
 =====================
 ### <sub>Framework Spring para implementações de projetos corporativos.</sub>
-
-Estrutura criada com Maven 2, onde pode ser acessada pelo pom.xml ou importando o jar dentro da aplicação. Por motivos de compatibilidade o framework dever ser usado apenas para implementações usando JAVA 6 ou JAVA 7.
+<sub>Estrutura criada com Maven 2, onde pode ser acessada pelo pom.xml ou importando o jar dentro da aplicação. Por motivos de compatibilidade o framework dever ser usado apenas para implementações usando JAVA 6 ou JAVA 7.</sub>
 
 - [Audit](#audit)
 - [Configuracao](#configuracao)
