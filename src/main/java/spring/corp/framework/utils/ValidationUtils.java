@@ -5,7 +5,7 @@ import spring.corp.framework.view.RegexValidation;
 public class ValidationUtils {
 
 	/**
-	 * Validação de código de renavam
+	 * Validação de códigos de renavam
 	 * @param renavam (String) código de renavam para validação
 	 * @return (boolean) true para código válido e false para código inválido
 	 */
@@ -76,7 +76,7 @@ public class ValidationUtils {
 	}
 
 	/**
-	 * Validação de email
+	 * Validação de emails
 	 * @param email (String) email para validação
 	 * @return (boolean) true para email válido e false para email inválido
 	 */
@@ -94,8 +94,23 @@ public class ValidationUtils {
 		return true;
 	}
 	
+	/**
+	 * Validação de número de placas
+	 * @param placa (String) número de placa para validação
+	 * @return (boolean) true para número de placa válida e false para inválida
+	 */
+	public static boolean placaValid(String placa) {
+		if (StringUtils.isBlank(placa)) {
+			return false;
+		}
+		// Valida se esta no formato correto
+		if (!placa.matches(RegexValidation.PLACA.expression())) {
+			return false;
+		}
+		return true;
+	}
+	
 	// TODO: Inserir validador de CEP
-	// TODO: Inserir validador de Placa
 	// TODO: Inserir validador de CPF
 	// TODO: Inserir validador de CNPJ
 	// TODO: Inserir validador de Outros

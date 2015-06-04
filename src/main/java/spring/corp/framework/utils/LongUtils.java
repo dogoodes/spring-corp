@@ -14,15 +14,15 @@ public class LongUtils implements IConverter<Long> {
 	
 	/**
 	 * Converter um objeto String em Long
-	 * @param valor O valor a ser convertido
-	 * @return Objeto Long
-	 * @throws ConverterException
+	 * @param valor (String) valor a ser convertido
+	 * @return (Long) valor convertido
+	 * @throws ConverterException caso string inválida para conversão ou algum outro problema
 	 */
-	public Long convert(String valor) throws ConverterException {
+	public Long convert(String value) throws ConverterException {
 		Long newLong = null;
-		if (valor != null && !valor.equals("")) {
+		if (value != null && !value.equals("")) {
 			try {
-				newLong = Long.valueOf(valor);
+				newLong = Long.valueOf(value);
 			} catch (NumberFormatException e) {
 				throw new ConverterException(LongUtils.class, e);
 			}
@@ -30,10 +30,20 @@ public class LongUtils implements IConverter<Long> {
 		return newLong;
 	}
 	
-	public static boolean isBlank(Long valor) {
-		return (valor == null || Long.signum(valor) == 0);
+	/**
+	 * Verificar se o Long esta vazio
+	 * @param value (Long) valor para verificação
+	 * @return (boolean) true para Long vazio e false caso contrário
+	 */
+	public static boolean isBlank(Long value) {
+		return (value == null || Long.signum(value) == 0);
 	}
 	
+	/**
+	 * Converte String em long
+	 * @param value (String) valor para conversão
+	 * @return (long) valor convertido
+	 */
 	public static long parseLong(String value) {
 		if (!StringUtils.isBlank(value)) {
 			return Long.parseLong(value.trim());
@@ -41,6 +51,11 @@ public class LongUtils implements IConverter<Long> {
 	    return 0L;
 	}
 
+	/**
+	 * Converte Number em long
+	 * @param value (Number) valor para conversão
+	 * @return (long) valor convertido
+	 */
 	public static long parseLong(Number value) {
 		if (value != null) {
 			if (value instanceof Long) {

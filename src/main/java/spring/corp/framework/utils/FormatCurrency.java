@@ -45,8 +45,12 @@ public class FormatCurrency {
 	}
 
 	/**
-	 * Fomat a BigDecimal value. Example: 100.992,52
-	 * @param value
+	 * Fomat a BigDecimal value. <br />Example: 100.992,52
+	 * @param value (Number) to format
+	 * @return (String) <ul>
+     *         			<li>if value is null, return 0,00</li>
+     *         			<li>else return value formated</li>
+     *         			</ul>
 	 */
 	public static String formatCurrency(Number value) {
 		if (value != null) {
@@ -56,23 +60,36 @@ public class FormatCurrency {
 	}
 
 	/**
-	 * Fomat a Integer value. Example: 100.992,52
-	 * @param value
+	 * Fomat a Integer value. <br />Example: 100.992,52
+	 * @param value (Integer) to format
+	 * @return (String) <ul>
+     *         			<li>if value is null, return 0,00</li>
+     *         			<li>else return value formated</li>
+     *         			</ul>
 	 */
 	public static String formatCurrency(Integer value) {
-		if (value != null) {			
+		if (value != null) {
 			return getFormat().format(value);
 		}
 		return ZERO;
 	}
 
+	/**
+	 * Fomat a double value. <br />Example: 100.992,52
+	 * @param value (double) to format
+	 * @return (String) value formated
+	 */
 	public static String formatCurrency(double value) {
 		return getFormat().format(value);
 	}
 
 	/**
-	 * Fomat a Long value. Example: 100,00
-	 * @param value
+	 * Fomat a Long value. <br />Example: 100,00
+	 * @param value (Long) to format
+	 * @return (String) <ul>
+     *         			<li>if value is null, return 0,00</li>
+     *         			<li>else return value formated</li>
+     *         			</ul>
 	 */
 	public static String formatCurrency(Long value) {
 		if (value != null) {
@@ -82,8 +99,9 @@ public class FormatCurrency {
 	}
 
 	/**
-	 * Fomat a long value. Example: 100,00
-	 * @param value
+	 * Fomat a long value. <br />Example: 100,00
+	 * @param value (long) to format
+	 * @return (String) value formated
 	 */
 	public static String formatCurrency(long value) {
 		return getFormat().format(value);
@@ -91,12 +109,19 @@ public class FormatCurrency {
 
 	/**
 	 * Fomat a float value. Example: 100,00
-	 * @param value
+	 * @param value (float) to format
+	 * @return (String) value formated
 	 */
 	public static String formatCurrency(float value) {
 		return getFormat().format(value);
 	}
 
+	/**
+	 * Fomat a String value to for standard BigDecimal<br />
+	 * Example: 100,00
+	 * @param value (String) to format
+	 * @return (String) value formated
+	 */
 	public static String formatCurrency(String value) throws UserException {
 		if (value != null) {
 			try {
@@ -113,10 +138,14 @@ public class FormatCurrency {
 
 	/**
 	 * Fomat a BigDecimal value using the given pattern
-	 * @param pattern the pattern to be used.
-	 * @param value the value to format
+	 * @param value (BigDecimal) to format
+	 * @param pattern (String) pattern to be used.
+	 * @return (String) <ul>
+     *         			<li>if value is null, return 0,00</li>
+     *         			<li>else return value formated</li>
+     *         			</ul>
 	 */
-	public static String formatCurrency(String pattern, BigDecimal value) {
+	public static String formatCurrency(BigDecimal value, String pattern) {
 		if (value != null) {			
 			return getFormat(pattern).format(value);
 		}
@@ -124,9 +153,13 @@ public class FormatCurrency {
 	}
 
 	/**
-	 * Fomat a BigDecimal value with no grouping separator (dots, in our case).
+	 * Fomat a BigDecimal value with no grouping separator (dots, in our case).<br />
 	 * Example: 100992,52
-	 * @param value
+	 * @param value (BigDecimal) to format
+	 * @return (String) <ul>
+     *         			<li>if value is null, return 0,00</li>
+     *         			<li>else return value formated</li>
+     *         			</ul>
 	 */
 	public static String formatCurrencyNoGrouping(BigDecimal value) {
 		if (value != null) {

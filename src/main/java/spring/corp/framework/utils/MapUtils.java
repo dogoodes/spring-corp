@@ -15,6 +15,7 @@ public class MapUtils {
     private MapUtils() {
         throw new AssertionError();
     }
+    
     /**
      * is null or its size is 0
      * 

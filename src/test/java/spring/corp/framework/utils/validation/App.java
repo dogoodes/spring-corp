@@ -2,6 +2,7 @@ package spring.corp.framework.utils.validation;
 
 import spring.corp.framework.generator.Cnpj;
 import spring.corp.framework.generator.Cpf;
+import spring.corp.framework.generator.Placa;
 import spring.corp.framework.generator.Renavam;
 import spring.corp.framework.utils.IdentificacaoValidation;
 import spring.corp.framework.utils.ValidationUtils;
@@ -34,5 +35,12 @@ public class App {
 		System.out.println(ValidationUtils.emailValid("alberto.cerqueira1990gmail.com"));
 		System.out.println(ValidationUtils.emailValid("alberto.cerqueira1990@"));
 		System.out.println(ValidationUtils.emailValid("alberto.cerqueira1990@gmail"));
+		
+		System.out.println();
+		
+		System.out.println("Placa");
+		System.out.println(ValidationUtils.placaValid(Placa.get()));
+		System.out.println(ValidationUtils.placaValid(Placa.get()));
+		System.out.println(ValidationUtils.placaValid("ABCD-123"));
 	}
 }
