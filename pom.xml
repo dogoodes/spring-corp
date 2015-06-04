@@ -110,33 +110,36 @@
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>3.4.0.GA</version>
-		</dependency>
-		<dependency>
-			<groupId>hibernate-commons-annotations</groupId>
-			<artifactId>hibernate-commons-annotations</artifactId>
-			<version>3.0.0.GA</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>3.4.0.GA</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate</artifactId>
-			<version>3.2.4.sp1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>3.0.0.ga</version>
+			<version>3.5.1-Final</version>
+			<type>pom</type>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>3.3.0.GA</version>
+			<version>4.3.10.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.10.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.5.6-Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>3.2.0.Final</version>
+		</dependency>
+
+		<!-- JBoss -->
+		<dependency>
+			<groupId>org.jboss</groupId>
+			<artifactId>jboss-common-core</artifactId>
+			<version>2.5.0.Final</version>
 		</dependency>
 
 		<!-- Persistence -->
@@ -283,7 +286,7 @@
 
 		<!-- soap -->
 		<dependency>
-			<groupId>org.apache.soap</groupId>
+			<groupId>soap</groupId>
 			<artifactId>soap</artifactId>
 			<version>2.3</version>
 		</dependency>

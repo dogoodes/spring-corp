@@ -14,24 +14,24 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
 	public GenericDAO() {
 		this.persistentClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
+	
+	@Override
+	public void insert(T orm) {
+		getEntityManager().persist(orm);
+	}
 
 	@Override
-	public T atualizar(T orm) {
+	public T update(T orm) {
 		return (T)getEntityManager().merge(orm);
 	}
 
 	@Override
-	public void excluir(T orm) {
+	public void remove(T orm) {
 		getEntityManager().remove(orm);	
 	}
 	
 	@Override
-	public void inserir(T orm) {
-		getEntityManager().persist(orm);
-	}
-	
-	@Override
-	public <S> void  alterarRelacao(Collection<S> oldOrm, Collection<S> newOrm) {
+	public <S> void  update(Collection<S> oldOrm, Collection<S> newOrm) {
 		for (S newItem : newOrm) {
 			if (oldOrm.contains(newItem)) {
 				getEntityManager().merge(newItem);
@@ -46,7 +46,7 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
 	}
 	
 	@Override
-	public <S> void  alterarRelacao(Collection<S> oldOrm, Collection<S> newOrm, ICustomMerge<S> customMerge, ICustomPersist<S> customPersist) {
+	public <S> void  update(Collection<S> oldOrm, Collection<S> newOrm, ICustomMerge<S> customMerge, ICustomPersist<S> customPersist) {
 		for (S newItem : newOrm) {
 			if (oldOrm.contains(newItem)) {
 				if (customMerge == null) {
