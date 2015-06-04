@@ -11,7 +11,7 @@ import spring.corp.framework.configuracao.GerenciadorConfiguracao;
 import spring.corp.framework.email.GerenciadorEmail;
 import spring.corp.framework.security.NameHolder;
 
-public class GerenciadorLog {
+public class ManagerLog {
 	
 	private static Map<String, Boolean> loggerInfo = new HashMap<String, Boolean>();
 	private static Map<String, Boolean> loggerDebug = new HashMap<String, Boolean>();
@@ -105,7 +105,7 @@ public class GerenciadorLog {
 	
 	@SuppressWarnings("rawtypes")
 	public static void error(Class clazz, Throwable error) {
-		boolean applyError = !clazz.getSimpleName().matches("(Importador|ImportarNota|ImportadorProduto)");
+		boolean applyError = !clazz.getSimpleName().matches("(Class1|Class2|Class3)");
 		if (applyError) {
 			error.printStackTrace();
 		}

@@ -28,7 +28,7 @@ import spring.corp.framework.i18n.GerenciadorMensagem;
 import spring.corp.framework.io.IOUtils;
 import spring.corp.framework.io.SerializableInputStream;
 import spring.corp.framework.json.JSONFileAttachment;
-import spring.corp.framework.log.GerenciadorLog;
+import spring.corp.framework.log.ManagerLog;
 
 public class GerenciadorEmail implements Runnable {
 
@@ -54,11 +54,11 @@ public class GerenciadorEmail implements Runnable {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			String message = GerenciadorMensagem.getMessage("arquivo.nao.encontrado", arquivo);
-			GerenciadorLog.critical(GerenciadorEmail.class, message);
+			ManagerLog.critical(GerenciadorEmail.class, message);
 		} catch (IOException e) {
 			e.printStackTrace();
 			String message = GerenciadorMensagem.getMessage("arquivo.invalido", arquivo);
-			GerenciadorLog.critical(GerenciadorEmail.class, message);
+			ManagerLog.critical(GerenciadorEmail.class, message);
 		}
 	}
 	
@@ -170,7 +170,7 @@ public class GerenciadorEmail implements Runnable {
 			try {
 				addressTo[i] = new InternetAddress(email, name);
 			} catch (UnsupportedEncodingException e) {
-				GerenciadorLog.debug(GerenciadorEmail.class, e, email);
+				ManagerLog.debug(GerenciadorEmail.class, e, email);
 			}
 			i++;
 		}
@@ -180,7 +180,7 @@ public class GerenciadorEmail implements Runnable {
 			InternetAddress addressFrom = new InternetAddress(from, name);
 			msg.setFrom(addressFrom);
 		} catch (UnsupportedEncodingException e) {
-			GerenciadorLog.debug(GerenciadorEmail.class, e, from);
+			ManagerLog.debug(GerenciadorEmail.class, e, from);
 		}
 		msg.setRecipients(Message.RecipientType.TO, addressTo);
 		msg.setSubject(subject);
@@ -220,7 +220,7 @@ public class GerenciadorEmail implements Runnable {
 			try {
 				addressTo[i] = new InternetAddress(email, name);
 			} catch (UnsupportedEncodingException e) {
-				GerenciadorLog.debug(GerenciadorEmail.class, e, email);
+				ManagerLog.debug(GerenciadorEmail.class, e, email);
 			}
 			i++;
 		}
@@ -230,7 +230,7 @@ public class GerenciadorEmail implements Runnable {
 			InternetAddress addressFrom = new InternetAddress(from, name);
 			msg.setFrom(addressFrom);
 		} catch (UnsupportedEncodingException e) {
-			GerenciadorLog.debug(GerenciadorEmail.class, e, from);
+			ManagerLog.debug(GerenciadorEmail.class, e, from);
 		}
 		msg.setRecipients(Message.RecipientType.TO, addressTo);
 		msg.setSubject(subject);

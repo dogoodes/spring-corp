@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import spring.corp.framework.exceptions.UserException;
 import spring.corp.framework.i18n.GerenciadorMensagem;
-import spring.corp.framework.log.GerenciadorLog;
+import spring.corp.framework.log.ManagerLog;
 
 public class OutgoingServlet extends AbstractServlet<String> {
 
@@ -27,16 +27,16 @@ public class OutgoingServlet extends AbstractServlet<String> {
 		PrintWriter out = response.getWriter();
 		if (webClassId == null) {
 			String message = GerenciadorMensagem.getMessage("webservice.outgoingservlet.assinaturaxml.webClassId.nao.informado");
-			GerenciadorLog.critical(OutgoingServlet.class, message);
+			ManagerLog.critical(OutgoingServlet.class, message);
 		} else {
 			try {
 				preExecute(request, response);
 				xml  = executeWebClassSpring(request, response, webClassId, invoke);
 			} catch (UserException e) {
-				GerenciadorLog.error(OutgoingServlet.class, e);
+				ManagerLog.error(OutgoingServlet.class, e);
 			} catch (Exception e) {
 				String message = GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL);
-				GerenciadorLog.critical(Servlet.class, e, message);
+				ManagerLog.critical(Servlet.class, e, message);
 			} finally {
 				posExecute(request, response);
 			}

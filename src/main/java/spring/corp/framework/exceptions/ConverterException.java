@@ -1,6 +1,6 @@
 package spring.corp.framework.exceptions;
 
-import spring.corp.framework.log.GerenciadorLog;
+import spring.corp.framework.log.ManagerLog;
 
 public class ConverterException extends UserException {
 	
@@ -9,12 +9,12 @@ public class ConverterException extends UserException {
 	@SuppressWarnings("rawtypes")
 	public ConverterException(Class origin, Throwable cause) {
 		super(cause);
-		GerenciadorLog.error(origin, cause);
+		ManagerLog.error(origin, cause);
 	}
 	
 	@SuppressWarnings("rawtypes")
 	public ConverterException(Class origin, String message) {
 		super(message);
-		GerenciadorLog.error(origin, message);
+		ManagerLog.error(origin, message);
 	}
 }

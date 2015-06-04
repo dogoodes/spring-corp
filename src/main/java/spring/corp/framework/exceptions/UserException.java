@@ -1,6 +1,6 @@
 package spring.corp.framework.exceptions;
 
-import spring.corp.framework.log.GerenciadorLog;
+import spring.corp.framework.log.ManagerLog;
 
 /**
  * @author Alberto Cerqueira
@@ -32,8 +32,8 @@ public class UserException extends RuntimeException {
 	 */
 	public UserException(String message, Throwable cause) {
 		super(message, cause);
-		if (GerenciadorLog.isDebug(UserException.class)) {
-			GerenciadorLog.debug(UserException.class, cause, message);
+		if (ManagerLog.isDebug(UserException.class)) {
+			ManagerLog.debug(UserException.class, cause, message);
 		}
 	}
 	

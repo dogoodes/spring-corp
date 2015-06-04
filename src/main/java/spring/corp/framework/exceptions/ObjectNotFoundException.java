@@ -1,6 +1,6 @@
 package spring.corp.framework.exceptions;
 
-import spring.corp.framework.log.GerenciadorLog;
+import spring.corp.framework.log.ManagerLog;
 
 public class ObjectNotFoundException extends Exception {
 
@@ -22,7 +22,7 @@ public class ObjectNotFoundException extends Exception {
 	@SuppressWarnings("rawtypes")
 	public ObjectNotFoundException(Class origin, Throwable cause) {
 		super(cause);
-		GerenciadorLog.error(origin, cause);
+		ManagerLog.error(origin, cause);
 	}
 
 	/**
@@ -33,7 +33,7 @@ public class ObjectNotFoundException extends Exception {
 	@SuppressWarnings("rawtypes")
 	public ObjectNotFoundException(Class origin, String message) {
 		super(message);
-		GerenciadorLog.error(origin, message);
+		ManagerLog.error(origin, message);
 	}
 
 	/**
@@ -45,6 +45,6 @@ public class ObjectNotFoundException extends Exception {
 	@SuppressWarnings("rawtypes")
 	public ObjectNotFoundException(Class origin, String message, Throwable cause) {
 		super(message, cause);
-		GerenciadorLog.error(origin, cause, message);
+		ManagerLog.error(origin, cause, message);
 	}
 }

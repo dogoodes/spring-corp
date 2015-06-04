@@ -15,7 +15,7 @@ import spring.corp.framework.exceptions.UserLinkException;
 import spring.corp.framework.i18n.GerenciadorMensagem;
 import spring.corp.framework.json.Consequence;
 import spring.corp.framework.json.JSONReturn;
-import spring.corp.framework.log.GerenciadorLog;
+import spring.corp.framework.log.ManagerLog;
 import spring.corp.framework.utils.ScreenCollabUtil;
 import spring.corp.framework.view.InputHolder;
 
@@ -70,7 +70,7 @@ public class Servlet extends AbstractServlet<JSONReturn> {
 				response.setCharacterEncoding("UTF-8");
 				response.setContentType("application/json;charset=UTF-8");
 				String message = GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL);
-				GerenciadorLog.critical(Servlet.class, e, message);
+				ManagerLog.critical(Servlet.class, e, message);
 				out = getWriter(out, response);
 				out.print(JSONReturn.newInstance(Consequence.ERRO).message(message).serialize());
 			} finally {

@@ -1,7 +1,7 @@
 package spring.corp.framework.exceptions;
 
 import spring.corp.framework.i18n.GerenciadorMensagem;
-import spring.corp.framework.log.GerenciadorLog;
+import spring.corp.framework.log.ManagerLog;
 
 public class CriticalUserException extends UserException {
 
@@ -9,16 +9,16 @@ public class CriticalUserException extends UserException {
 
 	public CriticalUserException(Class<?> origin, String messageSystem) {
 		super(GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL));
-		GerenciadorLog.critical(origin, messageSystem);
+		ManagerLog.critical(origin, messageSystem);
 	}
 
 	public CriticalUserException(Class<?> origin, String messageSystem, Throwable error) {
 		super(GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL), error);
-		GerenciadorLog.critical(origin, error, messageSystem);
+		ManagerLog.critical(origin, error, messageSystem);
 	}
 	
 	public CriticalUserException(Class<?> origin, String messageSystem, String messageUser, Throwable error) {
 		super(messageUser, error);
-		GerenciadorLog.critical(origin, error, messageSystem);
+		ManagerLog.critical(origin, error, messageSystem);
 	}
 }

@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
-import spring.corp.framework.log.GerenciadorLog;
+import spring.corp.framework.log.ManagerLog;
 import spring.corp.framework.utils.StringUtils;
 
 public class GerenciadorConfiguracao {
@@ -36,13 +36,13 @@ public class GerenciadorConfiguracao {
 				while ((line = br.readLine()) != null) {
 					if (!StringUtils.isBlank(line) && !line.startsWith("#")) {
 						String[] values = line.split("[=]");
-						if (GerenciadorLog.isDebug(GerenciadorConfiguracao.class)) {
+						if (ManagerLog.isDebug(GerenciadorConfiguracao.class)) {
 							try {
-								GerenciadorLog.debug(GerenciadorConfiguracao.class, "Carregando a seguinte chave: [" + values[0] +"] e Valor: [" + values[1] + "]");
+								ManagerLog.debug(GerenciadorConfiguracao.class, "Carregando a seguinte chave: [" + values[0] +"] e Valor: [" + values[1] + "]");
 							} catch (IndexOutOfBoundsException e) {
-								GerenciadorLog.debug(GerenciadorConfiguracao.class, "Erro ao ler o array. Tamanho: [" + values.length + "] Esperado: 2");
+								ManagerLog.debug(GerenciadorConfiguracao.class, "Erro ao ler o array. Tamanho: [" + values.length + "] Esperado: 2");
 								if (values.length == 1) {
-									GerenciadorLog.error(GerenciadorConfiguracao.class, e, "Carregando a seguinte chave: [" + values[0] +"]");
+									ManagerLog.error(GerenciadorConfiguracao.class, e, "Carregando a seguinte chave: [" + values[0] +"]");
 								}
 							}
 						}

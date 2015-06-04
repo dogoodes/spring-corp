@@ -18,7 +18,7 @@ import spring.corp.framework.json.Consequence;
 import spring.corp.framework.json.JSONConstant;
 import spring.corp.framework.json.JSONFileAttachment;
 import spring.corp.framework.json.JSONReturn;
-import spring.corp.framework.log.GerenciadorLog;
+import spring.corp.framework.log.ManagerLog;
 import spring.corp.framework.view.FutureRemoveSession;
 import spring.corp.framework.view.InputHolder;
 
@@ -76,7 +76,7 @@ public abstract class AttachmentServlet extends AbstractServlet<JSONReturn> {
 					out.print(jsonReturn.serialize());	
 				} catch (Exception e) {
 					String message = GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL);
-					GerenciadorLog.critical(AttachmentServlet.class, e, message);
+					ManagerLog.critical(AttachmentServlet.class, e, message);
 					out = getWriter(out, response);
 					out.print(JSONReturn.newInstance(Consequence.ERRO).message(message).serialize());
 				} finally {

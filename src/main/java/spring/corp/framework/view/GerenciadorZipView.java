@@ -17,7 +17,7 @@ import spring.corp.framework.i18n.GerenciadorMensagem;
 import spring.corp.framework.io.ProgressFileGeneration;
 import spring.corp.framework.json.Consequence;
 import spring.corp.framework.json.JSONReturn;
-import spring.corp.framework.log.GerenciadorLog;
+import spring.corp.framework.log.ManagerLog;
 import spring.corp.framework.zip.CreateZipFile;
 import spring.corp.framework.zip.ZipContent;
 
@@ -94,7 +94,7 @@ public abstract class GerenciadorZipView extends MonitorStatus {
 			zipFile.close();
 		}catch(IOException e){
 			updateStatusZip(request, ticket, JSONReturn.newInstance(Consequence.ERRO, progress).message(GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL)));
-			GerenciadorLog.critical(GerenciadorZipView.class, e, GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL));
+			ManagerLog.critical(GerenciadorZipView.class, e, GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL));
 		}finally{
 			if (out != null){
 				try{

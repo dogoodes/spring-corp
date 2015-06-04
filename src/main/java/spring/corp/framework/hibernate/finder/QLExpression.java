@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import spring.corp.framework.log.GerenciadorLog;
+import spring.corp.framework.log.ManagerLog;
 import spring.corp.framework.utils.StringUtils;
 
 public final class QLExpression {
@@ -84,7 +84,7 @@ public final class QLExpression {
 				}
 			}
 		}
-		GerenciadorLog.debug(QLExpression.class, query.toString());
+		ManagerLog.debug(QLExpression.class, query.toString());
 		return query;
 	}
 	
@@ -205,7 +205,7 @@ public final class QLExpression {
 			}
 		}
 		
-		GerenciadorLog.debug(QLExpression.class, query.toString());
+		ManagerLog.debug(QLExpression.class, query.toString());
 		return query;
 	}
 	

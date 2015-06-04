@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import spring.corp.framework.json.Consequence;
 import spring.corp.framework.json.JSONConstant;
 import spring.corp.framework.json.JSONReturn;
-import spring.corp.framework.log.GerenciadorLog;
+import spring.corp.framework.log.ManagerLog;
 import spring.corp.framework.utils.StringUtils;
 
 public class MonitorStatus implements IMonitorStatus {
@@ -114,8 +114,8 @@ public class MonitorStatus implements IMonitorStatus {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession(true);
 		session.setAttribute(ticket, jsonReturn);
-		if (GerenciadorLog.isDebug(MonitorStatus.class)) {
-			GerenciadorLog.debug(MonitorStatus.class, "Update Status:" + jsonReturn.getConsequence().name() + " do ticket: " + ticket);
+		if (ManagerLog.isDebug(MonitorStatus.class)) {
+			ManagerLog.debug(MonitorStatus.class, "Update Status:" + jsonReturn.getConsequence().name() + " do ticket: " + ticket);
 		}
 	}
 	
@@ -123,8 +123,8 @@ public class MonitorStatus implements IMonitorStatus {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession(true);
 		session.setAttribute(ticket, JSONReturn.newInstance(Consequence.STOP_RETRY));
-		if (GerenciadorLog.isDebug(MonitorStatus.class)) {
-			GerenciadorLog.debug(MonitorStatus.class, "STOP_RETRY: STOP status do ticket: " + ticket);
+		if (ManagerLog.isDebug(MonitorStatus.class)) {
+			ManagerLog.debug(MonitorStatus.class, "STOP_RETRY: STOP status do ticket: " + ticket);
 		}
 		return JSONReturn.newInstance(Consequence.SUCESSO);
 	}
@@ -153,8 +153,8 @@ public class MonitorStatus implements IMonitorStatus {
 			retries.setValor(iRetry);
 			jsonReturn = JSONReturn.newInstance(Consequence.RETRY, retries);
 		}
-		if (GerenciadorLog.isDebug(MonitorStatus.class)) {
-			GerenciadorLog.debug(MonitorStatus.class, "RETRY: Checando status do ticket: " + ticket);
+		if (ManagerLog.isDebug(MonitorStatus.class)) {
+			ManagerLog.debug(MonitorStatus.class, "RETRY: Checando status do ticket: " + ticket);
 		}
 		return jsonReturn;
 	}
