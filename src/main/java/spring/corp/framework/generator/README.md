@@ -2,17 +2,13 @@
 =====================
 ### <sub>Classes com conjunto de métodos que executam funções comuns, muitas vezes re-utilizados com funções que geram dados aleatórios para o sistema.</sub>
 
-- [App.java](#app.java)
-- [Cnpj.java](#cnpj.java)
-- [Cpf.java](#cpf.java)
-- [Password.java](#password.java)
-- [Placa.java](#placa.java)
-- [Renavam.java](#renavam.java)
-- [Word.java](#word.java)
+- [Cnpj.java](#cnpjjava)
+- [Cpf.java](#cpfjava)
+- [Password.java](#passwordjava)
+- [Placa.java](#placajava)
+- [Renavam.java](#renavamjava)
+- [Word.java](#wordjava)
 
-
-### <sub>App.java</sub>
-<sub>Classe de teste do pacote. [veja](https://github.com/albertocerqueira/java-framework/blob/master/framework/src/main/java/br/com/java/framework/generator/App.java "veja").</sub>
 
 ### <sub>Cnpj.java</sub>
 <sub>Gerador de CNPJ's aleatórios. [veja](https://github.com/albertocerqueira/java-framework/blob/master/framework/src/main/java/br/com/java/framework/generator/Cnpj.java "veja").</sub>
