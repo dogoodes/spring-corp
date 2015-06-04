@@ -1,6 +1,6 @@
-# Spring Corp
+### Spring Corp
 =====================
-### <sub># Framework Spring para implementações de projetos corporativos.
+### <sub>Framework Spring para implementações de projetos corporativos.</sub>
 
 Estrutura criada com Maven 2, onde pode ser acessada pelo pom.xml ou importando o jar dentro da aplicação. Por motivos de compatibilidade o framework dever ser usado apenas para implementações usando JAVA 6 ou JAVA 7.
 
@@ -81,4 +81,5 @@ Estrutura criada com Maven 2, onde pode ser acessada pelo pom.xml ou importando 
 
 ### <sub>Contribuições</sub>
 <sub>[Alberto Cerqueira](https://github.com/albertocerqueira/ "Alberto Cerqueira") - alberto.cerqueira1990@gmail.com</sub>
+
 <sub>[Guilherme Magalhães](https://github.com/guiandmag/ "Guilherme Magalhães") - guiandmag@gmail.com</sub>
