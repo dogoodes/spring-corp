@@ -10,8 +10,7 @@ public class Cnpj {
 	}
 	
 	private int randomiza(int n) {
-		int ranNum = (int) (Math.random() * n);
-		return ranNum;
+		return (int) (Math.random() * n);
 	}
 
 	private int mod(int dividendo, int divisor) {

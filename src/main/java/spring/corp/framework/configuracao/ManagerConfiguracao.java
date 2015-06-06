@@ -10,13 +10,13 @@ import java.util.Properties;
 import spring.corp.framework.log.ManagerLog;
 import spring.corp.framework.utils.StringUtils;
 
-public class GerenciadorConfiguracao {
+public class ManagerConfiguracao {
 	
 	private static Properties p = new Properties();
 	
 	static {
 		try {
-			load(GerenciadorConfiguracao.class.getResourceAsStream("/configuracao.properties"));
+			load(ManagerConfiguracao.class.getResourceAsStream("/configuracao.properties"));
 			String file = System.getProperty("configuracao");
 			if (file != null) {
 				load(new FileInputStream(file));
@@ -36,13 +36,13 @@ public class GerenciadorConfiguracao {
 				while ((line = br.readLine()) != null) {
 					if (!StringUtils.isBlank(line) && !line.startsWith("#")) {
 						String[] values = line.split("[=]");
-						if (ManagerLog.isDebug(GerenciadorConfiguracao.class)) {
+						if (ManagerLog.isDebug(ManagerConfiguracao.class)) {
 							try {
-								ManagerLog.debug(GerenciadorConfiguracao.class, "Carregando a seguinte chave: [" + values[0] +"] e Valor: [" + values[1] + "]");
+								ManagerLog.debug(ManagerConfiguracao.class, "Carregando a seguinte chave: [" + values[0] +"] e Valor: [" + values[1] + "]");
 							} catch (IndexOutOfBoundsException e) {
-								ManagerLog.debug(GerenciadorConfiguracao.class, "Erro ao ler o array. Tamanho: [" + values.length + "] Esperado: 2");
+								ManagerLog.debug(ManagerConfiguracao.class, "Erro ao ler o array. Tamanho: [" + values.length + "] Esperado: 2");
 								if (values.length == 1) {
-									ManagerLog.error(GerenciadorConfiguracao.class, e, "Carregando a seguinte chave: [" + values[0] +"]");
+									ManagerLog.error(ManagerConfiguracao.class, e, "Carregando a seguinte chave: [" + values[0] +"]");
 								}
 							}
 						}

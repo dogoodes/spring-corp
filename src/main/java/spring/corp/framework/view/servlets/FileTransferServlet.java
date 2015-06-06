@@ -10,7 +10,7 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import spring.corp.framework.configuracao.GerenciadorConfiguracao;
+import spring.corp.framework.configuracao.ManagerConfiguracao;
 import spring.corp.framework.exceptions.UserException;
 import spring.corp.framework.ftp.FileTransferTicketsStatus;
 import spring.corp.framework.i18n.GerenciadorMensagem;
@@ -27,7 +27,7 @@ public abstract class FileTransferServlet extends AbstractServlet<Void> {
 	public static final int SEND_FILE = 3;
 	public static final int CLOSE_CHANNEL = 4;
 	public static final int WAIT_TO_SEND_FILE = 5;
-	public int maxRequestToImport = Integer.parseInt( GerenciadorConfiguracao.getConfiguracao("MAX_REQUEST_TO_IMPORT") );
+	public int maxRequestToImport = Integer.parseInt( ManagerConfiguracao.getConfiguracao("MAX_REQUEST_TO_IMPORT") );
 	public volatile int requestToImport = 0;
 	
     public void service(HttpServletRequest request, HttpServletResponse response) {

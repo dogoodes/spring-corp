@@ -35,7 +35,7 @@ public class IntegerUtils implements IConverter<Integer> {
 	/**
 	 * Verifica se a String possui apenas números
 	 * @param str (String) string para verificação
-	 * @return (boolean) true caso a String possua apenas número e false caso possua algum caracter que não seja número
+	 * @return (boolean) true caso a String possua apenas número e false caso contrário
 	 */
 	public static boolean isOnlyNumber(String value) {
 		boolean ret = false;

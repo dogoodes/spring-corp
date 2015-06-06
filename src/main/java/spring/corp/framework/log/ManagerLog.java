@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import spring.corp.framework.configuracao.GerenciadorConfiguracao;
+import spring.corp.framework.configuracao.ManagerConfiguracao;
 import spring.corp.framework.email.GerenciadorEmail;
 import spring.corp.framework.security.NameHolder;
 
@@ -53,7 +53,7 @@ public class ManagerLog {
 	public static void debug(Class clazz, Throwable error, String mensagem){
 		StringBuffer sb = new StringBuffer(sdf.format(Calendar.getInstance().getTime()))
 		.append(" - ")
-		.append(GerenciadorConfiguracao.getConfiguracao("app"))
+		.append(ManagerConfiguracao.getConfiguracao("app"))
 		.append(" - DEBUG:[")
 		.append(clazz.getSimpleName())
 		.append("] Mensagem:[")
@@ -67,7 +67,7 @@ public class ManagerLog {
 	public static void debug(Class clazz, String debug) {
 		StringBuffer sb = new StringBuffer(sdf.format(Calendar.getInstance().getTime()))
 		.append(" - ")
-		.append(GerenciadorConfiguracao.getConfiguracao("app"))
+		.append(ManagerConfiguracao.getConfiguracao("app"))
 		.append(" - DEBUG:[")
 		.append(clazz.getSimpleName())
 		.append("] Mensagem:[")
@@ -80,7 +80,7 @@ public class ManagerLog {
 	public static void error(Class clazz, String error) {
 		StringBuffer sb = new StringBuffer(sdf.format(Calendar.getInstance().getTime()))
 		.append(" - ")
-		.append(GerenciadorConfiguracao.getConfiguracao("app"))
+		.append(ManagerConfiguracao.getConfiguracao("app"))
 		.append(" - ERROR:[")
 		.append(clazz.getSimpleName())
 		.append("] Mensagem:[")
@@ -93,7 +93,7 @@ public class ManagerLog {
 	public static void error(Class clazz, Throwable error, String mensagem) {
 		StringBuffer sb = new StringBuffer(sdf.format(Calendar.getInstance().getTime()))
 		.append(" - ")
-		.append(GerenciadorConfiguracao.getConfiguracao("app"))
+		.append(ManagerConfiguracao.getConfiguracao("app"))
 		.append(" - ERROR:[")
 		.append(clazz.getSimpleName())
 		.append("] Mensagem:[")
@@ -116,7 +116,7 @@ public class ManagerLog {
 		System.out.println(sdf.format(Calendar.getInstance().getTime()) + " - WARN [ " +clazz.getSimpleName() + "] Mensagem:["+ warn + "]");
 		StringBuffer sb = new StringBuffer(sdf.format(Calendar.getInstance().getTime()))
 		.append(" - ")
-		.append(GerenciadorConfiguracao.getConfiguracao("app"))
+		.append(ManagerConfiguracao.getConfiguracao("app"))
 		.append(" - WARN [")
 		.append(clazz.getSimpleName())
 		.append("] Mensagem:[")
@@ -130,7 +130,7 @@ public class ManagerLog {
 		System.out.println(sdf.format(Calendar.getInstance().getTime()) + " - TRACER [ " +clazz.getSimpleName() + "] Mensagem:["+ trace + "]");
 		StringBuffer sb = new StringBuffer(sdf.format(Calendar.getInstance().getTime()))
 		.append(" - ")
-		.append(GerenciadorConfiguracao.getConfiguracao("app"))
+		.append(ManagerConfiguracao.getConfiguracao("app"))
 		.append(" - TRACER [")
 		.append(clazz.getSimpleName())
 		.append("] Mensagem:[")
@@ -145,7 +145,7 @@ public class ManagerLog {
 		System.out.println(sdf.format(Calendar.getInstance().getTime()) + " - INFO [ " +clazz.getSimpleName() + "] Mensagem:["+ info + "]");
 		StringBuffer sb = new StringBuffer(sdf.format(Calendar.getInstance().getTime()))
 		.append(" - ")
-		.append(GerenciadorConfiguracao.getConfiguracao("app"))
+		.append(ManagerConfiguracao.getConfiguracao("app"))
 		.append(" - INFO [")
 		.append(clazz.getSimpleName())
 		.append("] Mensagem:[")
@@ -202,8 +202,8 @@ public class ManagerLog {
 	
 	private static void criticalEmail(String mensagem) {
 		try {
-			String nameSender = GerenciadorConfiguracao.getConfiguracao("name.user");
-			String sender = GerenciadorConfiguracao.getConfiguracao("mail.user");
+			String nameSender = ManagerConfiguracao.getConfiguracao("name.user");
+			String sender = ManagerConfiguracao.getConfiguracao("mail.user");
 			Map<String, String> recipients = new HashMap<String, String>();
 			recipients.put("alberto.cerqueira1990@gmail.com", "Alberto Cerqueira");
 			GerenciadorEmail gerenciadorEmail = GerenciadorEmail.builderInstance()

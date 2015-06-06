@@ -23,14 +23,42 @@ public class StringUtils implements IConverter<String> {
 		return valor;
 	}
 
+	/**
+	 * Verificar se a String esta vazia<br />
+	 * Exemplos:
+	 * <ul>
+	 * 	 <li><code>(length() == 0) == true</code></li>
+	 * 	 <li><code>" " == false</code></li>
+	 *   <li><code>null == true</code></li>
+	 * </ul>
+	 * @param value (String) valor para verificação
+	 * @return (boolean) true para String vazia e false caso contrário
+	 */
     public static boolean isEmpty(String str) {
         return str == null || str.length() == 0;
     }
     
-    public static boolean isBlank(String obj) {
-		return (obj == null || obj.equals("") || obj.equals("null") || obj.trim().equals(""));
+    /**
+	 * Verificar se a String esta vazia<br />
+	 * Exemplos:
+	 * <ul>
+	 * 	 <li><code>" " == false</code></li>
+	 * 	 <li><code>"" == true</code></li>
+	 *   <li><code>"null" == true</code></li>
+	 *   <li><code>null == true</code></li>
+	 * </ul>
+	 * @param value (String) valor para verificação
+	 * @return (boolean) true para String vazia e false caso contrário
+	 */
+    public static boolean isBlank(String value) {
+		return (value == null || value.equals("") || value.equals("null") || value.trim().equals(""));
 	}
     
+    /**
+	 * Verifica se a String possui apenas letras
+	 * @param str (String) string para verificação
+	 * @return (boolean) true caso a String possua apenas letras e false caso contrário
+	 */
     public static boolean isOnlyLetters(String str) {
 		boolean ret = false;
 		if (!StringUtils.isBlank(str)) {
@@ -39,6 +67,11 @@ public class StringUtils implements IConverter<String> {
 		return ret;
 	}
     
+    /**
+	 * Verifica se a String possui apenas letras e números
+	 * @param str (String) string para verificação
+	 * @return (boolean) true caso a String possua apenas letras e números e false caso contrário
+	 */
     public static boolean isOnlyLettersNumbers(String str) {
 		boolean ret = false;
 		if (!StringUtils.isBlank(str)) {

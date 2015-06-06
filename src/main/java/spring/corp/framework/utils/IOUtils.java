@@ -1,4 +1,4 @@
-package spring.corp.framework.io;
+package spring.corp.framework.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+
+import spring.corp.framework.io.UnicodeBOMInputStream;
 
 public class IOUtils {
 

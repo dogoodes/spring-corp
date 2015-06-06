@@ -10,8 +10,8 @@ public interface ComplexValidation {
 
 	/**
 	 * Metodo responsavel pela validacao do campo
-	 * @param name Nome do campo para ser incluido no UserLinkException
-	 * @param value Valor do campo digitado pelo usuario
+	 * @param name (String) nome do campo para ser incluido no UserLinkException
+	 * @param value (String) valor do campo digitado pelo usuario
 	 * @throws UserLinkException Caso a validacao nao seja satisfeita
 	 */
 	public void validate(String name, String value) throws UserLinkException;
