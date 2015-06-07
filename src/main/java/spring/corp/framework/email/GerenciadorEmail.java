@@ -22,7 +22,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 
-import spring.corp.framework.configuracao.ManagerConfiguracao;
+import spring.corp.framework.configuracao.ManagerSetting;
 import spring.corp.framework.exceptions.UserException;
 import spring.corp.framework.i18n.GerenciadorMensagem;
 import spring.corp.framework.io.SerializableInputStream;
@@ -74,7 +74,7 @@ public class GerenciadorEmail implements Runnable {
 		this.recipients = builder.recipients;
 		this.subject = builder.subject;
 		GerenciadorEmail.html = builder.html;
-		this.usernames = ManagerConfiguracao.getConfiguracao("mail.login").split("[;]");
+		this.usernames = ManagerSetting.getSetting("mail.login").split("[;]");
 	}
 	
 	public static class Builder {
@@ -143,9 +143,9 @@ public class GerenciadorEmail implements Runnable {
 		boolean debug = false;
 		// Set the host smtp address
 		Properties props = new Properties();
-		props.put("mail.smtp.host", ManagerConfiguracao.getConfiguracao("mail.smtp.host"));
-		props.put("mail.smtp.auth", ManagerConfiguracao.getConfiguracao("mail.smtp.auth"));
-		props.put("mail.smtp.port", ManagerConfiguracao.getConfiguracao("mail.smtp.port"));
+		props.put("mail.smtp.host", ManagerSetting.getSetting("mail.smtp.host"));
+		props.put("mail.smtp.auth", ManagerSetting.getSetting("mail.smtp.auth"));
+		props.put("mail.smtp.port", ManagerSetting.getSetting("mail.smtp.port"));
 		
 		Authenticator auth = new SMTPAuthenticator();
 		Session session = Session.getDefaultInstance(props, auth);
@@ -192,9 +192,9 @@ public class GerenciadorEmail implements Runnable {
 		boolean debug = false;
 		// Set the host smtp address
 		Properties props = new Properties();
-		props.put("mail.smtp.host", ManagerConfiguracao.getConfiguracao("mail.smtp.host"));
-		props.put("mail.smtp.auth", ManagerConfiguracao.getConfiguracao("mail.smtp.auth"));
-		props.put("mail.smtp.port", ManagerConfiguracao.getConfiguracao("mail.smtp.port"));
+		props.put("mail.smtp.host", ManagerSetting.getSetting("mail.smtp.host"));
+		props.put("mail.smtp.auth", ManagerSetting.getSetting("mail.smtp.auth"));
+		props.put("mail.smtp.port", ManagerSetting.getSetting("mail.smtp.port"));
 		props.put("mail.transport.protocol", "smtp");
 
 		Authenticator auth = new SMTPAuthenticator();
@@ -266,7 +266,7 @@ public class GerenciadorEmail implements Runnable {
 	
 	private class SMTPAuthenticator extends javax.mail.Authenticator {
 	    public PasswordAuthentication getPasswordAuthentication() {
-	        String password = ManagerConfiguracao.getConfiguracao("mail.pass");
+	        String password = ManagerSetting.getSetting("mail.pass");
 	        PasswordAuthentication  passAuth = new PasswordAuthentication(usernames[posUserName], password);
 	        posUserName++;
 	        if (posUserName == usernames.length) {

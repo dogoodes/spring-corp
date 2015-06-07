@@ -1,4 +1,4 @@
-package spring.corp.framework.i18n;
+package spring.corp.framework.utils;
 
 import java.util.Locale;
 

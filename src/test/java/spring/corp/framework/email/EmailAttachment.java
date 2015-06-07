@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import spring.corp.framework.configuracao.ManagerConfiguracao;
+import spring.corp.framework.configuracao.ManagerSetting;
 import spring.corp.framework.i18n.GerenciadorMensagem;
 import spring.corp.framework.io.SerializableInputStream;
 import spring.corp.framework.json.JSONFileAttachment;
@@ -19,7 +19,7 @@ public class EmailAttachment {
 		attachmentXML.setFile("<root><name>Alberto Cerqueira</name></root>");
 		attachmentXML.setFileName("xml-file.xml");
 		
-		String folder = ManagerConfiguracao.getConfiguracao("diretorio.arquivos");
+		String folder = ManagerSetting.getSetting("diretorio.arquivos");
 		File file = new File(folder + "pdf-file.pdf");
 		SerializableInputStream s = new SerializableInputStream(new FileInputStream(file));
 		
@@ -31,8 +31,8 @@ public class EmailAttachment {
 		try {
 			String subject = "Teste envio de email";
 			String message = "Texto do email aqui.";
-			String nameSender = ManagerConfiguracao.getConfiguracao("name.user");
-			String sender = ManagerConfiguracao.getConfiguracao("mail.user");
+			String nameSender = ManagerSetting.getSetting("name.user");
+			String sender = ManagerSetting.getSetting("mail.user");
 			Map<String, String> recipients = new HashMap<String, String>();
 			recipients.put("alberto.cerqueira1990@gmail.com", "Alberto Cerqueira");
 			GerenciadorEmail ge = GerenciadorEmail.builderInstance()

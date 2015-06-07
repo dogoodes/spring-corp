@@ -12,12 +12,12 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.hibernate.exception.ConstraintViolationException;
 
-import spring.corp.framework.configuracao.ManagerConfiguracao;
+import spring.corp.framework.configuracao.ManagerSetting;
 import spring.corp.framework.utils.StringUtils;
 
 public class GerenciadorMensagem {
 
-	public static String language = ManagerConfiguracao.getConfiguracao("locale.language");
+	public static String language = ManagerSetting.getSetting("locale.language");
 	//private static ResourceBundle bundleERP = ResourceBundle.getBundle("Messages", new Locale(language));
 	public static final String ERRO_GERAL = "web.execution.erro.geral";
 	

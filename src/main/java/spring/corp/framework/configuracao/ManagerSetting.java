@@ -10,13 +10,13 @@ import java.util.Properties;
 import spring.corp.framework.log.ManagerLog;
 import spring.corp.framework.utils.StringUtils;
 
-public class ManagerConfiguracao {
+public class ManagerSetting {
 	
 	private static Properties p = new Properties();
 	
 	static {
 		try {
-			load(ManagerConfiguracao.class.getResourceAsStream("/configuracao.properties"));
+			load(ManagerSetting.class.getResourceAsStream("/configuracao.properties"));
 			String file = System.getProperty("configuracao");
 			if (file != null) {
 				load(new FileInputStream(file));
@@ -36,13 +36,13 @@ public class ManagerConfiguracao {
 				while ((line = br.readLine()) != null) {
 					if (!StringUtils.isBlank(line) && !line.startsWith("#")) {
 						String[] values = line.split("[=]");
-						if (ManagerLog.isDebug(ManagerConfiguracao.class)) {
+						if (ManagerLog.isDebug(ManagerSetting.class)) {
 							try {
-								ManagerLog.debug(ManagerConfiguracao.class, "Carregando a seguinte chave: [" + values[0] +"] e Valor: [" + values[1] + "]");
+								ManagerLog.debug(ManagerSetting.class, "Carregando a seguinte chave: [" + values[0] +"] e Valor: [" + values[1] + "]");
 							} catch (IndexOutOfBoundsException e) {
-								ManagerLog.debug(ManagerConfiguracao.class, "Erro ao ler o array. Tamanho: [" + values.length + "] Esperado: 2");
+								ManagerLog.debug(ManagerSetting.class, "Erro ao ler o array. Tamanho: [" + values.length + "] Esperado: 2");
 								if (values.length == 1) {
-									ManagerLog.error(ManagerConfiguracao.class, e, "Carregando a seguinte chave: [" + values[0] +"]");
+									ManagerLog.error(ManagerSetting.class, e, "Carregando a seguinte chave: [" + values[0] +"]");
 								}
 							}
 						}
@@ -64,7 +64,12 @@ public class ManagerConfiguracao {
 		}
 	}
 	
-	public static String getConfiguracao(String key) {
+	/**
+	 * Selecionar Configuração
+	 * @param key (String) chave com valor da configuração
+	 * @return (String) configuração
+	 */
+	public static String getSetting(String key) {
 		synchronized (p) {
 			return (String) p.get(key);
 		}

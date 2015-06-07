@@ -10,7 +10,6 @@ import java.util.Locale;
 import spring.corp.framework.exceptions.ConverterException;
 import spring.corp.framework.exceptions.UserException;
 import spring.corp.framework.i18n.GerenciadorMensagem;
-import spring.corp.framework.i18n.LocaleUtils;
 
 public class FormatCurrency {
 

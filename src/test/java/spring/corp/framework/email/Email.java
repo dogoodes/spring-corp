@@ -3,7 +3,7 @@ package spring.corp.framework.email;
 import java.util.HashMap;
 import java.util.Map;
 
-import spring.corp.framework.configuracao.ManagerConfiguracao;
+import spring.corp.framework.configuracao.ManagerSetting;
 import spring.corp.framework.i18n.GerenciadorMensagem;
 
 public class Email {
@@ -12,8 +12,8 @@ public class Email {
 		try {
 			String subject = "Teste envio de email";
 			String message = "Texto do email aqui.";
-			String nameSender = ManagerConfiguracao.getConfiguracao("name.user");
-			String sender = ManagerConfiguracao.getConfiguracao("mail.user");
+			String nameSender = ManagerSetting.getSetting("name.user");
+			String sender = ManagerSetting.getSetting("mail.user");
 			Map<String, String> recipients = new HashMap<String, String>();
 			recipients.put("alberto.cerqueira1990@gmail.com", "Alberto Cerqueira");
 			GerenciadorEmail ge = GerenciadorEmail.builderInstance()

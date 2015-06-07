@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import spring.corp.framework.exceptions.ConverterException;
-import spring.corp.framework.i18n.LocaleUtils;
 
 /**
  * Classe utilitaria de data. E fortemente recomendado que essa classe seja utilizado quando um objeto Calendar precisar ser criado pois esta classe

@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import spring.corp.framework.configuracao.ManagerConfiguracao;
+import spring.corp.framework.configuracao.ManagerSetting;
 
 public class GerenciadorTradutor {
 	
@@ -21,7 +21,7 @@ public class GerenciadorTradutor {
 	private List<ResourceBundle> bundles = new ArrayList<ResourceBundle>();
 	
 	static {
-	   String[] languagesSupported = ManagerConfiguracao.getConfiguracao("languages.supported").split(",");
+	   String[] languagesSupported = ManagerSetting.getSetting("languages.supported").split(",");
 	   for (String languageSupported : languagesSupported) {		   
 		   addonMessages.put(languageSupported.trim(), ResourceBundle.getBundle("Labels", new Locale(languageSupported.trim())));
 	   }
