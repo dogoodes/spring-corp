@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class CollectionUtils {
+public class CollectionsUtils {
 
 	/**
 	 * Verificar se a Collection esta vazia<br />

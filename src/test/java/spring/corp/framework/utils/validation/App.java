@@ -4,23 +4,29 @@ import spring.corp.framework.generator.Cnpj;
 import spring.corp.framework.generator.Cpf;
 import spring.corp.framework.generator.Placa;
 import spring.corp.framework.generator.Renavam;
-import spring.corp.framework.utils.IdentificacaoValidation;
+import spring.corp.framework.utils.IdentificationValidation;
 import spring.corp.framework.utils.ValidationUtils;
 
 public class App {
 
 	public static void main(String[] args) {
 		System.out.println("CPF");
-		System.out.println(IdentificacaoValidation.getInstance().validaCPF(Cpf.getInstance().get(true)));
-		System.out.println(IdentificacaoValidation.getInstance().validaCPF(Cpf.getInstance().get(false)));
-		System.out.println(IdentificacaoValidation.getInstance().validaCPF("000.000.000-00"));
+		System.out.println(IdentificationValidation.cpfInstance.validaCPF(Cpf.getInstance().get(true)));
+		System.out.println(IdentificationValidation.cpfInstance.validaCPF(Cpf.getInstance().get(false)));
+		System.out.println(IdentificationValidation.cpfInstance.validaCPF("000.000.000-00"));
+		System.out.println(ValidationUtils.cpfValid(Cpf.getInstance().get(true)));
+		System.out.println(ValidationUtils.cpfValid(Cpf.getInstance().get(false)));
+		System.out.println(ValidationUtils.cpfValid("000.000.000-00"));
 		
 		System.out.println();
 		
 		System.out.println("CNPJ");
-		System.out.println(IdentificacaoValidation.getInstance().validaCNPJ(Cnpj.getInstance().get(true)));
-		System.out.println(IdentificacaoValidation.getInstance().validaCNPJ(Cnpj.getInstance().get(false)));
-		System.out.println(IdentificacaoValidation.getInstance().validaCPF("00.000.000/0000-00"));
+		System.out.println(IdentificationValidation.cnpjInstance.validaCNPJ(Cnpj.getInstance().get(true)));
+		System.out.println(IdentificationValidation.cnpjInstance.validaCNPJ(Cnpj.getInstance().get(false)));
+		System.out.println(IdentificationValidation.cnpjInstance.validaCNPJ("00.000.000/0000-00"));
+		System.out.println(ValidationUtils.cnpjValid(Cnpj.getInstance().get(true)));
+		System.out.println(ValidationUtils.cnpjValid(Cnpj.getInstance().get(false)));
+		System.out.println(ValidationUtils.cnpjValid("00.000.000/0000-00"));
 		
 		System.out.println();
 		

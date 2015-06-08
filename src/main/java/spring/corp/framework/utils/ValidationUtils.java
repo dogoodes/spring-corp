@@ -110,8 +110,26 @@ public class ValidationUtils {
 		return true;
 	}
 	
+	/**
+	 * Validação de cpf
+	 * @param placa (String) número do cpf para validação
+	 * @return (boolean) true para número de cpf válido e false para inválido
+	 * @see .spring.corp.framework.utilsIdentificationValidation.validaCPF(String)
+	 */
+	public static boolean cpfValid(String cpf) {
+		return IdentificationValidation.cpfInstance.validaCPF(cpf);
+	}
+	
+	/**
+	 * Validação de cpf
+	 * @param placa (String) número do cpf para validação
+	 * @return (boolean) true para número de cpf válido e false para inválido
+	 * @see .spring.corp.framework.utilsIdentificationValidation.validaCNPJ(String)
+	 */
+	public static boolean cnpjValid(String cnpj) {
+		return IdentificationValidation.cnpjInstance.validaCNPJ(cnpj);
+	}
+	
 	// TODO: Inserir validador de CEP
-	// TODO: Inserir validador de CPF
-	// TODO: Inserir validador de CNPJ
 	// TODO: Inserir validador de Outros
 }

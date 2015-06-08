@@ -7,28 +7,28 @@ import spring.corp.framework.i18n.ManagerMessage;
 import spring.corp.framework.view.ComplexValidation;
 import spring.corp.framework.view.RegexValidation;
 
-public class IdentificacaoValidation implements ComplexValidation {
+public class IdentificationValidation implements ComplexValidation {
 
-	public static IdentificacaoValidation instance = new IdentificacaoValidation();
-	public static IdentificacaoValidation cnpjInstance = new IdentificacaoValidation(TYPE.CNPJ);
-	public static IdentificacaoValidation cpfInstance = new IdentificacaoValidation(TYPE.CPF);
+	public static IdentificationValidation instance = new IdentificationValidation();
+	public static IdentificationValidation cnpjInstance = new IdentificationValidation(TYPE.CNPJ);
+	public static IdentificationValidation cpfInstance = new IdentificationValidation(TYPE.CPF);
 	private static enum TYPE {CNPJ, CPF};
 	private TYPE type;
 	
-	public static IdentificacaoValidation getInstance() {
+	public static IdentificationValidation getInstance() {
 		return instance;
 	}
 	
-	public static IdentificacaoValidation getCNPJInstance() {
+	public static IdentificationValidation getCNPJInstance() {
 		return cnpjInstance;
 	}
 	
-	public static IdentificacaoValidation getCPFInstance() {
+	public static IdentificationValidation getCPFInstance() {
 		return cpfInstance;
 	}
 	
-	private IdentificacaoValidation(){}
-	private IdentificacaoValidation(TYPE type) {
+	private IdentificationValidation(){}
+	private IdentificationValidation(TYPE type) {
 		this.type = type;
 	}
 	
