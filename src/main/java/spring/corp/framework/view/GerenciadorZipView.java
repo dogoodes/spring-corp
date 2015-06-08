@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 import spring.corp.framework.io.ProgressFileGeneration;
 import spring.corp.framework.json.Consequence;
 import spring.corp.framework.json.JSONReturn;
@@ -93,8 +93,8 @@ public abstract class GerenciadorZipView extends MonitorStatus {
 			updateStatusZip(request, ticket, JSONReturn.newInstance(Consequence.SUCESSO, progress).message("Arquivo pronto para download"));
 			zipFile.close();
 		}catch(IOException e){
-			updateStatusZip(request, ticket, JSONReturn.newInstance(Consequence.ERRO, progress).message(GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL)));
-			ManagerLog.critical(GerenciadorZipView.class, e, GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL));
+			updateStatusZip(request, ticket, JSONReturn.newInstance(Consequence.ERRO, progress).message(ManagerMessage.getMessage(ManagerMessage.ERRO_GERAL)));
+			ManagerLog.critical(GerenciadorZipView.class, e, ManagerMessage.getMessage(ManagerMessage.ERRO_GERAL));
 		}finally{
 			if (out != null){
 				try{

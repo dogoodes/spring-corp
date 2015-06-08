@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import spring.corp.framework.exceptions.CriticalUserException;
 import spring.corp.framework.exceptions.UserException;
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 
 public abstract class Servlet<T> extends HttpServlet {
 
@@ -40,16 +40,16 @@ public abstract class Servlet<T> extends HttpServlet {
 		} catch (UserException e) {
 			throw e;
 		} catch (NoSuchMethodException e) {
-			String message = GerenciadorMensagem.getMessage("view.action.invalido", new Object[] {invoke, webClass.getClass().getSimpleName()});
+			String message = ManagerMessage.getMessage("view.action.invalido", new Object[] {invoke, webClass.getClass().getSimpleName()});
 			throw new UserException(message);
 		} catch (InvocationTargetException e) {
 			if (e.getTargetException() instanceof UserException) {
 				throw (UserException) e.getTargetException();
 			}
-			String message = GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL);
+			String message = ManagerMessage.getMessage(ManagerMessage.ERRO_GERAL);
 			throw new CriticalUserException(Servlet.class, message, e);
 		} catch (IllegalAccessException e) {
-			String message = GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL);
+			String message = ManagerMessage.getMessage(ManagerMessage.ERRO_GERAL);
 			throw new CriticalUserException(Servlet.class, message, e);
 		}
 		return executionReturn;

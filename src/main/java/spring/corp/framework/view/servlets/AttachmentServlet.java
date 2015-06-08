@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import spring.corp.framework.exceptions.UserException;
 import spring.corp.framework.exceptions.UserLinkException;
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 import spring.corp.framework.json.Consequence;
 import spring.corp.framework.json.JSONConstant;
 import spring.corp.framework.json.JSONFileAttachment;
@@ -75,7 +75,7 @@ public abstract class AttachmentServlet extends AbstractServlet<JSONReturn> {
 					}	
 					out.print(jsonReturn.serialize());	
 				} catch (Exception e) {
-					String message = GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL);
+					String message = ManagerMessage.getMessage(ManagerMessage.ERRO_GERAL);
 					ManagerLog.critical(AttachmentServlet.class, e, message);
 					out = getWriter(out, response);
 					out.print(JSONReturn.newInstance(Consequence.ERRO).message(message).serialize());

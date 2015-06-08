@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import spring.corp.framework.exceptions.UserException;
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 import spring.corp.framework.log.ManagerLog;
 
 public class IncomingServlet extends AbstractServlet<Void> {
@@ -72,7 +72,7 @@ public class IncomingServlet extends AbstractServlet<Void> {
 			} catch (UserException e) {
 				ManagerLog.error(IncomingServlet.class, e);
 			} catch (Exception e) {
-				String message = GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL);
+				String message = ManagerMessage.getMessage(ManagerMessage.ERRO_GERAL);
 				ManagerLog.critical(IncomingServlet.class, e, message);
 			} finally {
 				posExecute(request, response);

@@ -17,7 +17,7 @@ import spring.corp.framework.exceptions.UserException;
 import spring.corp.framework.hibernate.FetchEagerUtils;
 import spring.corp.framework.hibernate.IFetchEager;
 import spring.corp.framework.hibernate.dao.GenericDAO;
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 
 public abstract class GenericFinder<T> implements IGenericFinder<T> {
 
@@ -48,7 +48,7 @@ public abstract class GenericFinder<T> implements IGenericFinder<T> {
 		query.setParameter("id", id);
 		T t = (T) query.getSingleResult();
 		if (t == null) {
-			String mensagem = GerenciadorMensagem.getMessage("t.finder.t.nao.encontrada");
+			String mensagem = ManagerMessage.getMessage("t.finder.t.nao.encontrada");
 			throw new ObjectNotFoundException(GenericDAO.class, mensagem);
 		}
 		FetchEagerUtils.runFetch(t, eagers);
@@ -74,13 +74,13 @@ public abstract class GenericFinder<T> implements IGenericFinder<T> {
 			FetchEagerUtils.runFetch(t, eagers);
 			return t;
 		} catch (EntityNotFoundException e) {
-			String message = GerenciadorMensagem.getMessage(("t.finder.t.nao.encontrada.pelo." + atributo1value), atributo1value);
+			String message = ManagerMessage.getMessage(("t.finder.t.nao.encontrada.pelo." + atributo1value), atributo1value);
 			throw new ObjectNotFoundException(GenericDAO.class, message);
 		} catch (NoResultException e) {
-			String message = GerenciadorMensagem.getMessage(("t.finder.t.nao.encontrada.pelo." + atributo1value), atributo1value);
+			String message = ManagerMessage.getMessage(("t.finder.t.nao.encontrada.pelo." + atributo1value), atributo1value);
 			throw new ObjectNotFoundException(GenericDAO.class, message);
 		} catch (NonUniqueResultException e) {
-			String message = GerenciadorMensagem.getMessage(("t.finder.t.nao.encontrada.pelo." + atributo1value), atributo1value);
+			String message = ManagerMessage.getMessage(("t.finder.t.nao.encontrada.pelo." + atributo1value), atributo1value);
 			throw new CriticalUserException(GenericDAO.class, message);
 		}
 	}

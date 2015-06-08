@@ -24,7 +24,7 @@ import javax.mail.util.ByteArrayDataSource;
 
 import spring.corp.framework.configuracao.ManagerSetting;
 import spring.corp.framework.exceptions.UserException;
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 import spring.corp.framework.io.SerializableInputStream;
 import spring.corp.framework.json.JSONFileAttachment;
 import spring.corp.framework.log.ManagerLog;
@@ -53,11 +53,11 @@ public class ManagerEmail implements Runnable {
 			html = new String(b);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			String message = GerenciadorMensagem.getMessage("arquivo.nao.encontrado", arquivo);
+			String message = ManagerMessage.getMessage("arquivo.nao.encontrado", arquivo);
 			ManagerLog.critical(ManagerEmail.class, message);
 		} catch (IOException e) {
 			e.printStackTrace();
-			String message = GerenciadorMensagem.getMessage("arquivo.invalido", arquivo);
+			String message = ManagerMessage.getMessage("arquivo.invalido", arquivo);
 			ManagerLog.critical(ManagerEmail.class, message);
 		}
 	}
@@ -151,7 +151,7 @@ public class ManagerEmail implements Runnable {
 		 * Arquivos para envio em anexo do email
 		 * @param attach (JSONFileAttachment...) arquivos java.io.Serializable para anexo 
 		 * @return (Builder) class interna responsável pela construção da estrutura do email
-		 * @See java.io.Serializable
+		 * @see java.io.Serializable
 		 */
 		public Builder attach(JSONFileAttachment...attach) {
 			this.attach = attach;

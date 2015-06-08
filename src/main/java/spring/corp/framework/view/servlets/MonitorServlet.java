@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import spring.corp.framework.exceptions.UserException;
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 import spring.corp.framework.json.Consequence;
 import spring.corp.framework.json.JSONReturn;
 import spring.corp.framework.log.ManagerLog;
@@ -30,7 +30,7 @@ public abstract class MonitorServlet extends AbstractServlet<JSONReturn>{
 		} catch (UserException e) {
 			ManagerLog.error(MonitorServlet.class, e);
 		} catch (Exception e) {
-			String message = GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL);
+			String message = ManagerMessage.getMessage(ManagerMessage.ERRO_GERAL);
 			ManagerLog.critical(MonitorServlet.class, e, message);	
 		} finally {
 			posExecute(request, response);

@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 
 import flexjson.JSONSerializer;
 import flexjson.PathExpression;
@@ -129,7 +129,7 @@ public class JSONReturn {
 	}
 	
 	public JSONReturn messageKey(String messageKey){
-		this.message = GerenciadorMensagem.getMessage(messageKey);
+		this.message = ManagerMessage.getMessage(messageKey);
 		return this;
 	}
 	

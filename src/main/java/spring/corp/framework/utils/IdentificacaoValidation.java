@@ -3,7 +3,7 @@ package spring.corp.framework.utils;
 import java.util.InputMismatchException;
 
 import spring.corp.framework.exceptions.UserLinkException;
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 import spring.corp.framework.view.ComplexValidation;
 import spring.corp.framework.view.RegexValidation;
 
@@ -132,7 +132,7 @@ public class IdentificacaoValidation implements ComplexValidation {
         }
         	
         if (!isOk) {	
-        	String message = GerenciadorMensagem.getMessage("framework.utils.invalid.identification.format", "CPF");
+        	String message = ManagerMessage.getMessage("framework.utils.invalid.identification.format", "CPF");
             throw new UserLinkException(campo, message);
         }
 
@@ -185,7 +185,7 @@ public class IdentificacaoValidation implements ComplexValidation {
             }
         }
         if (!isOk) {
-        	String message = GerenciadorMensagem.getMessage("framework.utils.invalid.identification.format", "CPF");
+        	String message = ManagerMessage.getMessage("framework.utils.invalid.identification.format", "CPF");
             throw new UserLinkException(campo, message);
         }
 	}
@@ -277,7 +277,7 @@ public class IdentificacaoValidation implements ComplexValidation {
 		} 
         
         if (!isOk) {
-        	String message = GerenciadorMensagem.getMessage("framework.utils.invalid.identification.format", "CNPJ");
+        	String message = ManagerMessage.getMessage("framework.utils.invalid.identification.format", "CNPJ");
             throw new UserLinkException(campo, message);
         }
         
@@ -325,7 +325,7 @@ public class IdentificacaoValidation implements ComplexValidation {
             }
         }
         if (!isOk) {
-        	String message = GerenciadorMensagem.getMessage("framework.utils.invalid.identification.format", "CNPJ");
+        	String message = ManagerMessage.getMessage("framework.utils.invalid.identification.format", "CNPJ");
         	throw new UserLinkException(campo, message);
         }
 	}

@@ -9,7 +9,7 @@ import javax.servlet.ServletRequest;
 
 import spring.corp.framework.exceptions.ConverterException;
 import spring.corp.framework.exceptions.UserLinkException;
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 import spring.corp.framework.utils.StringUtils;
 
 /**
@@ -218,7 +218,7 @@ public class Input<T> implements IComponentView<T> {
 				if (isNullValue()) { //Se for nulo entao vamos ver se ele eh requerido
 					this.convertedValue = null;
 					if (Boolean.TRUE.equals(required)) {
-						String message = GerenciadorMensagem.getMessage("framework.utils.required", label);
+						String message = ManagerMessage.getMessage("framework.utils.required", label);
 						String link = (focus == null ? name : focus);
 						UserLinkException userLinkException = new UserLinkException(link, message);
 						InputHolder.get().add(userLinkException);
@@ -240,7 +240,7 @@ public class Input<T> implements IComponentView<T> {
 				} else { //Se o campo nao for nulo entao faz sentido validar
 					if (regexValidation != null) {
 						if (regexValidation.evaluate(value)) {
-							String message = GerenciadorMensagem.getMessage("framework.utils.regexValidation." + regexValidation.name());
+							String message = ManagerMessage.getMessage("framework.utils.regexValidation." + regexValidation.name());
 							UserLinkException userLinkException = new UserLinkException(name, message);
 							InputHolder.get().add(userLinkException);
 						}
@@ -265,28 +265,28 @@ public class Input<T> implements IComponentView<T> {
 						// work with length
 						if (length != null) {
 							if (theLength != length) {
-								String message = GerenciadorMensagem.getMessage("framework.utils.length", label, length);
+								String message = ManagerMessage.getMessage("framework.utils.length", label, length);
 								String link = (focus == null ? name : focus);
 								UserLinkException userLinkException = new UserLinkException(link, message);
 								InputHolder.get().add(userLinkException);
 							}
 						} else if (min != null && max != null) {
 							if (theLength < min || theLength > max) {
-								String message = GerenciadorMensagem.getMessage("framework.utils.min.and.max", label, min, max);
+								String message = ManagerMessage.getMessage("framework.utils.min.and.max", label, min, max);
 								String link = (focus == null ? name : focus);
 								UserLinkException userLinkException = new UserLinkException(link, message);
 								InputHolder.get().add(userLinkException);
 							}
 						} else if (min != null) {
 							if (theLength < min) {
-								String message = GerenciadorMensagem.getMessage("framework.utils.min", label, min);
+								String message = ManagerMessage.getMessage("framework.utils.min", label, min);
 								String link = (focus == null ? name : focus);
 								UserLinkException userLinkException = new UserLinkException(link, message);
 								InputHolder.get().add(userLinkException);
 							}
 						} else if (max != null) {
 							if (theLength > max) {
-								String message = GerenciadorMensagem.getMessage("framework.utils.max", label, max);
+								String message = ManagerMessage.getMessage("framework.utils.max", label, max);
 								String link = (focus == null ? name : focus);
 								UserLinkException userLinkException = new UserLinkException(link, message);
 								InputHolder.get().add(userLinkException);
@@ -312,21 +312,21 @@ public class Input<T> implements IComponentView<T> {
 							// work with value
 							if (lessThan != null && biggerThan != null) {
 								if (theValue >= lessThan || theValue <= biggerThan) {
-									String message = GerenciadorMensagem.getMessage("framework.utils.lessThan.and.biggerThan", label, biggerThan, lessThan);
+									String message = ManagerMessage.getMessage("framework.utils.lessThan.and.biggerThan", label, biggerThan, lessThan);
 									String link = (focus == null ? name : focus);
 									UserLinkException userLinkException = new UserLinkException(link, message);
 									InputHolder.get().add(userLinkException);
 								}
 							} else if (lessThan != null) {
 								if (theValue >= lessThan) {
-									String message = GerenciadorMensagem.getMessage("framework.utils.lessThan", label, lessThan);
+									String message = ManagerMessage.getMessage("framework.utils.lessThan", label, lessThan);
 									String link = (focus == null ? name : focus);
 									UserLinkException userLinkException = new UserLinkException(link, message);
 									InputHolder.get().add(userLinkException);
 								}
 							} else if (biggerThan != null) {
 								if (theValue <= biggerThan) {
-									String message = GerenciadorMensagem.getMessage("framework.utils.biggerThan", label, biggerThan);
+									String message = ManagerMessage.getMessage("framework.utils.biggerThan", label, biggerThan);
 									String link = (focus == null ? name : focus);
 									UserLinkException userLinkException = new UserLinkException(link, message);
 									InputHolder.get().add(userLinkException);
@@ -340,7 +340,7 @@ public class Input<T> implements IComponentView<T> {
 				if (e.getClass() == ConverterException.class) {
 					String nameType = type.getSimpleName();
 					String messageKey = "framework.utils." + nameType.toLowerCase() + ".com.campo.invalido";
-					message = GerenciadorMensagem.getMessage(messageKey, label);		
+					message = ManagerMessage.getMessage(messageKey, label);		
 				} else {
 					message = e.getMessage();
 				}

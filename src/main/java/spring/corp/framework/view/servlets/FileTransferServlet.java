@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import spring.corp.framework.configuracao.ManagerSetting;
 import spring.corp.framework.exceptions.UserException;
 import spring.corp.framework.ftp.FileTransferTicketsStatus;
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 import spring.corp.framework.log.ManagerLog;
 import spring.corp.framework.utils.StringUtils;
 
@@ -213,7 +213,7 @@ public abstract class FileTransferServlet extends AbstractServlet<Void> {
 		} catch (UserException e) {
 			ManagerLog.error(FileTransferServlet.class, e);
 		} catch (Exception e) {
-			String message = GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL);
+			String message = ManagerMessage.getMessage(ManagerMessage.ERRO_GERAL);
 			ManagerLog.error(FileTransferServlet.class, e, message);
 		} finally {
 			posExecute(request, response);

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import spring.corp.framework.configuracao.ManagerSetting;
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 
 public class Email {
     
@@ -27,8 +27,8 @@ public class Email {
 			t.start();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println(GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL));
+			System.out.println(ManagerMessage.getMessage(ManagerMessage.ERRO_GERAL));
 		}
-		System.out.println(GerenciadorMensagem.getMessage("view.mensagem.enviada.com.sucesso"));
+		System.out.println(ManagerMessage.getMessage("view.mensagem.enviada.com.sucesso"));
 	}
 }

@@ -2,7 +2,7 @@ package spring.corp.framework.utils;
 
 import java.util.Arrays;
 
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 
 public class ArrayUtils {
 
@@ -262,7 +262,7 @@ public class ArrayUtils {
      */
     public static long getLast(long[] sourceArray, long value, long defaultValue, boolean isCircle) {
         if (sourceArray.length == 0) {
-        	String message = GerenciadorMensagem.getMessage("framework.utils.array.comprimentocom.zero");
+        	String message = ManagerMessage.getMessage("framework.utils.array.comprimentocom.zero");
             throw new IllegalArgumentException(message);
         }
 
@@ -276,7 +276,7 @@ public class ArrayUtils {
      */
     public static long getNext(long[] sourceArray, long value, long defaultValue, boolean isCircle) {
         if (sourceArray.length == 0) {
-        	String message = GerenciadorMensagem.getMessage("framework.utils.array.comprimentocom.zero");
+        	String message = ManagerMessage.getMessage("framework.utils.array.comprimentocom.zero");
             throw new IllegalArgumentException(message);
         }
 
@@ -289,7 +289,7 @@ public class ArrayUtils {
      */
     public static int getLast(int[] sourceArray, int value, int defaultValue, boolean isCircle) {
         if (sourceArray.length == 0) {
-        	String message = GerenciadorMensagem.getMessage("framework.utils.array.comprimentocom.zero");
+        	String message = ManagerMessage.getMessage("framework.utils.array.comprimentocom.zero");
             throw new IllegalArgumentException(message);
         }
 
@@ -303,7 +303,7 @@ public class ArrayUtils {
      */
     public static int getNext(int[] sourceArray, int value, int defaultValue, boolean isCircle) {
         if (sourceArray.length == 0) {
-        	String message = GerenciadorMensagem.getMessage("framework.utils.array.comprimentocom.zero");
+        	String message = ManagerMessage.getMessage("framework.utils.array.comprimentocom.zero");
             throw new IllegalArgumentException(message);
         }
 

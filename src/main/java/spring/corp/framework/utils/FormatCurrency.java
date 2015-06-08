@@ -9,7 +9,7 @@ import java.util.Locale;
 
 import spring.corp.framework.exceptions.ConverterException;
 import spring.corp.framework.exceptions.UserException;
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 
 public class FormatCurrency {
 
@@ -203,7 +203,7 @@ public class FormatCurrency {
 		DecimalFormat format = getFormat(pattern);
 
 		if (!isValid(format, value)) {
-			String message = GerenciadorMensagem.getMessage("framework.utils.invalid.format", value, pattern);
+			String message = ManagerMessage.getMessage("framework.utils.invalid.format", value, pattern);
 			throw new ConverterException(FormatCurrency.class, message);
 		}
 

@@ -1,6 +1,6 @@
 package spring.corp.framework.exceptions;
 
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 import spring.corp.framework.log.ManagerLog;
 
 public class CriticalUserException extends UserException {
@@ -8,12 +8,12 @@ public class CriticalUserException extends UserException {
 	private static final long serialVersionUID = -8280945186537174047L;
 
 	public CriticalUserException(Class<?> origin, String messageSystem) {
-		super(GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL));
+		super(ManagerMessage.getMessage(ManagerMessage.ERRO_GERAL));
 		ManagerLog.critical(origin, messageSystem);
 	}
 
 	public CriticalUserException(Class<?> origin, String messageSystem, Throwable error) {
-		super(GerenciadorMensagem.getMessage(GerenciadorMensagem.ERRO_GERAL), error);
+		super(ManagerMessage.getMessage(ManagerMessage.ERRO_GERAL), error);
 		ManagerLog.critical(origin, error, messageSystem);
 	}
 	

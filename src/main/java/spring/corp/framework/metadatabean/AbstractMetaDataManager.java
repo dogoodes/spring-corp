@@ -7,7 +7,7 @@ import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.PropertyUtilsBean;
 
 import spring.corp.framework.exceptions.UserException;
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 import spring.corp.framework.metadatabean.types.IType;
 import spring.corp.framework.metadatabean.types.mainframe.IgnoreType;
 
@@ -45,7 +45,7 @@ public abstract class AbstractMetaDataManager implements IMetaDataManager {
 						BeanUtils.setProperty(metaData, name, newData);
 					}
 				} catch (Exception e) {
-					String message = GerenciadorMensagem.getMessage("metadata.datamanager.error.set", new Object[] {newData, name});
+					String message = ManagerMessage.getMessage("metadata.datamanager.error.set", new Object[] {newData, name});
 					UserException error = new UserException(message, e);
 					throw error;
 				}
@@ -93,7 +93,7 @@ public abstract class AbstractMetaDataManager implements IMetaDataManager {
 			}
 			strData = getDeMaterializeData(type, data);
 		} catch (Exception e) {
-			String message = GerenciadorMensagem.getMessage("metadata.datamanager.error.get", name);
+			String message = ManagerMessage.getMessage("metadata.datamanager.error.get", name);
 			UserException error = new UserException(message, e);
 			throw error;
 		}

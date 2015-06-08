@@ -3,7 +3,7 @@ package spring.corp.framework.metadatabean.types;
 import java.lang.reflect.Method;
 
 import spring.corp.framework.exceptions.UserException;
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 
 public class ConstructorType {
 
@@ -34,7 +34,7 @@ public class ConstructorType {
                 return newInstance;
             }
         } catch (Exception e) {
-        	String message = GerenciadorMensagem.getMessage("metadata.constructor.not.exist", constructor, classType.getName());
+        	String message = ManagerMessage.getMessage("metadata.constructor.not.exist", constructor, classType.getName());
         	UserException erro = new UserException(message);
             throw erro;
         }

@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import spring.corp.framework.i18n.GerenciadorMensagem;
+import spring.corp.framework.i18n.ManagerMessage;
 import spring.corp.framework.metadatabean.types.ConstructorType;
 import spring.corp.framework.metadatabean.types.mainframe.AbstractType;
 
@@ -62,7 +62,7 @@ public class OccursMetaDataBean extends AbstractType implements IOccursType, IMe
     
     public void flush(int _size) {
     	 if (constructorType == null) {
-             String message = GerenciadorMensagem.getMessage("metadata.implementation.occurs.not.specified");
+             String message = ManagerMessage.getMessage("metadata.implementation.occurs.not.specified");
              throw new IllegalStateException(message);
          }
     	 List<IMetaDataBean>  copiesMetaDataBean = new LinkedList<IMetaDataBean>();
@@ -91,7 +91,7 @@ public class OccursMetaDataBean extends AbstractType implements IOccursType, IMe
     
     public void flush() {
         if (constructorType == null) {
-            String message = GerenciadorMensagem.getMessage("metadata.implementation.occurs.not.specified");
+            String message = ManagerMessage.getMessage("metadata.implementation.occurs.not.specified");
             throw new IllegalStateException(message);
         }
         if (occurMetaDataDefinition == null) {

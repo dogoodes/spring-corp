@@ -15,7 +15,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import spring.corp.framework.configuracao.ManagerSetting;
 import spring.corp.framework.utils.StringUtils;
 
-public class GerenciadorMensagem {
+public class ManagerMessage {
 
 	public static String language = ManagerSetting.getSetting("locale.language");
 	//private static ResourceBundle bundleERP = ResourceBundle.getBundle("Messages", new Locale(language));
@@ -41,6 +41,12 @@ public class GerenciadorMensagem {
 		}
 	}
 	
+	/**
+	 * Método responsável por criar mensagem de erro de integridade
+	 * @param e (Throwable) stack de erro (Geralmente org.springframework.dao.DataIntegrityViolationException)
+	 * @return (String) mensagem de erro
+	 * @see org.springframework.dao.DataIntegrityViolationException
+	 */
 	public static String getMessageIntegrityConstraint(Throwable e) {
 		String messageToShow = null;
 		if (e instanceof ConstraintViolationException) {
@@ -66,6 +72,11 @@ public class GerenciadorMensagem {
 		return messageToShow;
 	}
 	
+	/**
+	 * Selecionar mensagem
+	 * @param key (String) chave com valor da mensagem
+	 * @return (String) mensagem
+	 */
 	public static String getMessage(String key) {
 		String message = null;
 		r.lock();
@@ -84,6 +95,12 @@ public class GerenciadorMensagem {
 		return message;
 	}
 	
+	/**
+	 * Selecionar mensagem
+	 * @param key (String) chave com valor da mensagem
+	 * @param params (Object...) parametros para completar mensagem
+	 * @return (String) mensagem
+	 */
 	public static String getMessage(String key, Object...params) {
 		String message = null;
 		r.lock();
@@ -112,7 +129,7 @@ public class GerenciadorMensagem {
 	}
 	
 	public static void main(String argv[]) {
-		System.out.println(GerenciadorMensagem.getMessage("view.logar.nome.nulo"));
-		System.out.println(GerenciadorMensagem.getMessage("ip.machine.user", "123"));
+		System.out.println(ManagerMessage.getMessage("view.logar.nome.nulo"));
+		System.out.println(ManagerMessage.getMessage("ip.machine.user", "123"));
 	}
 }
