@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import spring.corp.framework.configuracao.ManagerSetting;
-import spring.corp.framework.email.GerenciadorEmail;
+import spring.corp.framework.email.ManagerEmail;
 import spring.corp.framework.security.NameHolder;
 
 public class ManagerLog {
@@ -206,7 +206,7 @@ public class ManagerLog {
 			String sender = ManagerSetting.getSetting("mail.user");
 			Map<String, String> recipients = new HashMap<String, String>();
 			recipients.put("alberto.cerqueira1990@gmail.com", "Alberto Cerqueira");
-			GerenciadorEmail gerenciadorEmail = GerenciadorEmail.builderInstance()
+			ManagerEmail gerenciadorEmail = ManagerEmail.builderInstance()
 				.recipients(recipients)
 				.subject("Erro cr\u00edtico - Usu\u00e1rio:" + NameHolder.get())
 				.message(mensagem)

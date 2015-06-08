@@ -16,7 +16,7 @@ public class Email {
 			String sender = ManagerSetting.getSetting("mail.user");
 			Map<String, String> recipients = new HashMap<String, String>();
 			recipients.put("alberto.cerqueira1990@gmail.com", "Alberto Cerqueira");
-			GerenciadorEmail ge = GerenciadorEmail.builderInstance()
+			ManagerEmail ge = ManagerEmail.builderInstance()
 				.recipients(recipients)
 				.subject(subject)
 				.message(message) /*Se nao tiver mensagem vai ser enviado o HTML*/

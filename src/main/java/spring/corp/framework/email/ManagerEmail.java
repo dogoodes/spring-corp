@@ -30,7 +30,7 @@ import spring.corp.framework.json.JSONFileAttachment;
 import spring.corp.framework.log.ManagerLog;
 import spring.corp.framework.utils.IOUtils;
 
-public class GerenciadorEmail implements Runnable {
+public class ManagerEmail implements Runnable {
 
 	private final Map<String, String> recipients; //key = email | value = name
 	private final String subject;
@@ -45,35 +45,35 @@ public class GerenciadorEmail implements Runnable {
 	static {
 		String arquivo = "email-falha-envio.html";
 		try {
-			URL url = GerenciadorEmail.class.getResource("/" + arquivo);
+			URL url = ManagerEmail.class.getResource("/" + arquivo);
 			if (url == null) {
-				url = GerenciadorEmail.class.getResource(arquivo);
+				url = ManagerEmail.class.getResource(arquivo);
 			}
 			byte[] b = IOUtils.toByteArray(url.openStream(), 2000);
 			html = new String(b);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			String message = GerenciadorMensagem.getMessage("arquivo.nao.encontrado", arquivo);
-			ManagerLog.critical(GerenciadorEmail.class, message);
+			ManagerLog.critical(ManagerEmail.class, message);
 		} catch (IOException e) {
 			e.printStackTrace();
 			String message = GerenciadorMensagem.getMessage("arquivo.invalido", arquivo);
-			ManagerLog.critical(GerenciadorEmail.class, message);
+			ManagerLog.critical(ManagerEmail.class, message);
 		}
 	}
 	
-	public static GerenciadorEmail.Builder builderInstance() {
-		return new GerenciadorEmail.Builder();
+	public static ManagerEmail.Builder builderInstance() {
+		return new ManagerEmail.Builder();
 	}
 	
-	private GerenciadorEmail(Builder builder) {
+	private ManagerEmail(Builder builder) {
 		this.attach = builder.attach;
 		this.name = builder.name;
 		this.from = builder.from;
 		this.message = builder.message;
 		this.recipients = builder.recipients;
 		this.subject = builder.subject;
-		GerenciadorEmail.html = builder.html;
+		ManagerEmail.html = builder.html;
 		this.usernames = ManagerSetting.getSetting("mail.login").split("[;]");
 	}
 	
@@ -86,43 +86,84 @@ public class GerenciadorEmail implements Runnable {
 		private String html;
 		private JSONFileAttachment[] attach;
 		
+		/**
+		 * Destinatários do email
+		 * @param recipients (Map<String, String>) map com nome e email dos destinatários
+		 * @return (Builder) class interna responsável pela construção da estrutura do email
+		 */
 		public Builder recipients(Map<String, String> recipients) {
 			this.recipients = recipients;
 			return this;
 		}
 		
+		/**
+		 * Assunto do email
+		 * @param subject (String) assunto
+		 * @return (Builder) class interna responsável pela construção da estrutura do email
+		 */
 		public Builder subject(String subject) {
 			this.subject = subject;
 			return this;
 		}
 		
+		/**
+		 * HTML do email<br />
+		 * Para envio de emails marketing ou relativos
+		 * @param html (String) código html
+		 * @return (Builder) class interna responsável pela construção da estrutura do email
+		 */
 		public Builder html(String html) {
 			this.html = html;
 			return this;
 		}
 		
+		/**
+		 * Mensagem do email
+		 * @param message (String) mensagem
+		 * @return (Builder) class interna responsável pela construção da estrutura do email
+		 */
 		public Builder message(String message) {
 			this.message = message;
 			return this;
 		}
 		
+		/**
+		 * Nome do responsável pelo email
+		 * @param name (String) nome do responsável
+		 * @return (Builder) class interna responsável pela construção da estrutura do email
+		 */
 		public Builder name(String name) {
 			this.name = name;
 			return this;
 		}
 		
+		/**
+		 * Email do responsável pelo email
+		 * @param form (String) email do responsável
+		 * @return (Builder) class interna responsável pela construção da estrutura do email
+		 */
 		public Builder from(String from) {
 			this.from = from;
 			return this;
 		}
 		
+		/**
+		 * Arquivos para envio em anexo do email
+		 * @param attach (JSONFileAttachment...) arquivos java.io.Serializable para anexo 
+		 * @return (Builder) class interna responsável pela construção da estrutura do email
+		 * @See java.io.Serializable
+		 */
 		public Builder attach(JSONFileAttachment...attach) {
 			this.attach = attach;
 			return this;
 		}
 
-		public GerenciadorEmail build() {
-			return new GerenciadorEmail(this);
+		/**
+		 * Construir estrutura do email
+		 * @return (ManagerEmail) Gerenciado de email com estrutura pronta
+		 */
+		public ManagerEmail build() {
+			return new ManagerEmail(this);
 		}
 	}
 	
@@ -170,7 +211,7 @@ public class GerenciadorEmail implements Runnable {
 			try {
 				addressTo[i] = new InternetAddress(email, name);
 			} catch (UnsupportedEncodingException e) {
-				ManagerLog.debug(GerenciadorEmail.class, e, email);
+				ManagerLog.debug(ManagerEmail.class, e, email);
 			}
 			i++;
 		}
@@ -180,7 +221,7 @@ public class GerenciadorEmail implements Runnable {
 			InternetAddress addressFrom = new InternetAddress(from, name);
 			msg.setFrom(addressFrom);
 		} catch (UnsupportedEncodingException e) {
-			ManagerLog.debug(GerenciadorEmail.class, e, from);
+			ManagerLog.debug(ManagerEmail.class, e, from);
 		}
 		msg.setRecipients(Message.RecipientType.TO, addressTo);
 		msg.setSubject(subject);
@@ -220,7 +261,7 @@ public class GerenciadorEmail implements Runnable {
 			try {
 				addressTo[i] = new InternetAddress(email, name);
 			} catch (UnsupportedEncodingException e) {
-				ManagerLog.debug(GerenciadorEmail.class, e, email);
+				ManagerLog.debug(ManagerEmail.class, e, email);
 			}
 			i++;
 		}
@@ -230,7 +271,7 @@ public class GerenciadorEmail implements Runnable {
 			InternetAddress addressFrom = new InternetAddress(from, name);
 			msg.setFrom(addressFrom);
 		} catch (UnsupportedEncodingException e) {
-			ManagerLog.debug(GerenciadorEmail.class, e, from);
+			ManagerLog.debug(ManagerEmail.class, e, from);
 		}
 		msg.setRecipients(Message.RecipientType.TO, addressTo);
 		msg.setSubject(subject);
