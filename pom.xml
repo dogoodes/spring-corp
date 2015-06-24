@@ -6,7 +6,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>spring-corp</name>
-	<url>http://maven.apache.org</url>
+	<url>http://www.springcorp.com.br</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
