@@ -76,9 +76,8 @@
 ### <sub>Servlets</sub>
 <sub>Servlets implementadas para distribuir o acesso na camada controle, onde temos apenas uma servlet para acessar classes java de acordo com o request da view. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/view/servlets "veja mais").</sub>
 
-### <sub>Contribuições</sub>
-<ol>
-<li>[Alberto Cerqueira](https://github.com/albertocerqueira/ "Alberto Cerqueira") - alberto.cerqueira1990@gmail.com<li>
-<li>[Fabiano Matias](https://github.com/fabianormatias/ "Fabiano Matias") - fabianormatias@gmail.com<li>
-<li>[Guilherme Magalhães](https://github.com/guiandmag/ "Guilherme Magalhães") - guiandmag@gmail.com</li>
-</ol>
+### Contribuições
+[Alberto Cerqueira](https://github.com/albertocerqueira/ "Alberto Cerqueira") - alberto.cerqueira1990@gmail.com
+[Fabiano Matias](https://github.com/fabianormatias/ "Fabiano Matias") - fabianormatias@gmail.com
+[Guilherme Magalhães](https://github.com/guiandmag/ "Guilherme Magalhães") - guiandmag@gmail.com
+
