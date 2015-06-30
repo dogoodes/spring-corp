@@ -8,7 +8,7 @@
 [<sub>FTP</sub>](#ftp)  
 [<sub>Generator</sub>](#generator)  
 [<sub>Hibernate</sub>](#hibernate)  
-	 [<sub>DAO</sub>](#dao)  
+&nbsp;&nbsp;&nbsp;&nbsp;[<sub>DAO</sub>](#dao)  
 	 [<sub>Finder</sub>](#finder)  
 [<sub>i18n</sub>](#i18n)  
 [<sub>io</sub>](#io)  
@@ -76,7 +76,7 @@
 ### <sub>Servlets</sub>
 <sub>Servlets implementadas para distribuir o acesso na camada controle, onde temos apenas uma servlet para acessar classes java de acordo com o request da view. [veja mais](https://github.com/albertocerqueira/java-framework/tree/master/framework/src/main/java/br/com/java/framework/view/servlets "veja mais").</sub>
 
-### Contribuições
+### <sub>Contribuições</sub>
 [<sub>Alberto Cerqueira</sub>](https://github.com/albertocerqueira/ "Alberto Cerqueira") - <sub>alberto.cerqueira1990@gmail.com</sub>  
 [<sub>Fabiano Matias</sub>](https://github.com/fabianormatias/ "Fabiano Matias") - <sub>fabianormatias@gmail.com</sub>  
 [<sub>Marcelo Mata</sub>](https://github.com/marcelomata/ "Marcelo Mata") - <sub>marcelosimara.java@gmail.com</sub>  
