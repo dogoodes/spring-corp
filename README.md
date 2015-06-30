@@ -1,7 +1,7 @@
 ### <sub>Biblioteca spring para implementações de projetos corporativos.</sub>
 <sub>Estrutura criada com Maven 2, onde pode ser acessada pelo pom.xml ou importando o jar dentro da aplicação. Por motivos de compatibilidade o framework dever ser usado apenas para implementações usando JAVA 6 ou JAVA 7.</sub>
 
-- [Audit](#audit)
+- [<sub>Audit</sub>](#audit)
 - [Configuracao](#configuracao)
 - [Email](#email)
 - [Exceptions](#exceptions)
@@ -79,5 +79,5 @@
 ### Contribuições
 [Alberto Cerqueira](https://github.com/albertocerqueira/ "Alberto Cerqueira") - alberto.cerqueira1990@gmail.com  
 [Fabiano Matias](https://github.com/fabianormatias/ "Fabiano Matias") - fabianormatias@gmail.com  
-[Guilherme Magalhães](https://github.com/guiandmag/ "Guilherme Magalhães") - guiandmag@gmail.com  
+[Marcelo Mata](https://github.com/marcelomata/ "Marcelo Mata") - marcelosimara.java@gmail.com  
 
